@@ -1,11 +1,10 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-
-const inter = Inter({ subsets: ["latin"] });
+import { inter } from "./fonts";
+import { routes } from "./common/routes";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,9 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Analytics />
-      <body className={`${inter.className} flex flex-col min-h-screen	`}>
-        <header className="p-2 flex items-center">
-          <Link href={"/"}>
+      <body className={`${inter.className} antialiased flex flex-col min-h-screen	`}>
+        <header className="px-6 md:px-10 py-4 flex items-center shadow-xl">
+          <Link href={routes.home.path}>
             <Image
               className="rounded-full"
               src="/icon.jpg"
@@ -32,7 +31,7 @@ export default function RootLayout({
             ></Image>
           </Link>
           <nav className="grow flex justify-end ">
-            <Link href={"/circuitos"}>Circuitos</Link>
+            <Link href={routes.circuits.path}>Circuitos</Link>
           </nav>
         </header>
         <main className="grow">{children}</main>
