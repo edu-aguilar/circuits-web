@@ -1,7 +1,9 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +20,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Analytics />
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} flex flex-col min-h-screen	`}>
+        <header className="p-2 flex items-center">
+          <Link href={"/"}>
+            <Image
+              className="rounded-full"
+              src="/icon.jpg"
+              width={48}
+              height={48}
+              alt="pitbike-image"
+            ></Image>
+          </Link>
+          <nav className="grow flex justify-end ">
+            <Link href={"/circuitos"}>Circuitos</Link>
+          </nav>
+        </header>
+        <main className="grow">{children}</main>
+      </body>
     </html>
   );
 }
