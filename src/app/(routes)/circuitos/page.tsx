@@ -5,5 +5,9 @@ export default async function CircuitsPage() {
   const circuits = await findCircuits();
   console.log(circuits);
   
-  return <AppPage><h1>circuitos</h1></AppPage>
+  return <AppPage>{circuits.map(circuit => {
+    return <div key={circuit.id}>
+      <h1 >{circuit.name}</h1>
+    </div>
+  })}</AppPage>
 }
