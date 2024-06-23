@@ -1,4 +1,4 @@
-import { apiService } from "@/app/common/infra/services/CircuitsApiService";
+import { ApiService } from "@/app/common/infra/services/CircuitsApiService";
 import { Circuit } from "../domain/entities/Circuit";
 import { CircuitApi } from "./types/CircuitApi";
 import { ApiPaginatedResponse } from "@/app/common/infra/types/ApiPaginatedResponse";
@@ -6,7 +6,7 @@ import { ApiPaginatedResponse } from "@/app/common/infra/types/ApiPaginatedRespo
 export class CircuitsRepository {
   private readonly apiService;
 
-  constructor(_apiService = apiService) {
+  constructor(_apiService = ApiService.getInstance()) {
     this.apiService = _apiService;
   }
 

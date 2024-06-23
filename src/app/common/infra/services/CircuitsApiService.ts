@@ -35,5 +35,3 @@ export class ApiService {
     return ApiService.instance;
   }
 }
-
-export const apiService = ApiService.getInstance();
