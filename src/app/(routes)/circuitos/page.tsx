@@ -8,7 +8,7 @@ export default async function CircuitsPage() {
 
   return (
     <AppPage>
-      <div className="flex flex-wrap gap-6 max-w-5xl m-auto">
+      <div className="flex flex-wrap gap-6 max-w-5xl m-auto justify-center lg:justify-start">
         {circuits.map((circuit) => {
           return <CircuitCard key={circuit.id} circuit={circuit}></CircuitCard>;
         })}
