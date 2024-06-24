@@ -30,7 +30,7 @@ export class CircuitsRepository {
       (circuitApi) =>
         new Circuit({
           id: circuitApi._id,
-          name: circuitApi.name,
+          ...circuitApi,
         })
     );
   }
