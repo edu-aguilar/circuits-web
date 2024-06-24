@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AppPage } from "./common/components/AppPage";
+import { AppPage } from "./common/ui/components/AppPage";
 import { routes } from "./common/routes";
 
 export default function Home() {
