@@ -2,6 +2,7 @@ import { ApiService } from "@/app/common/infra/services/CircuitsApiService";
 import { Circuit } from "../domain/entities/Circuit";
 import { CircuitApi } from "./types/CircuitApi";
 import { ApiPaginatedResponse } from "@/app/common/infra/types/ApiPaginatedResponse";
+import { CircuitFilterQuery } from "../domain/types/CircuitFilterQuery";
 
 export class CircuitsRepository {
   private readonly apiService;
@@ -10,11 +11,13 @@ export class CircuitsRepository {
     this.apiService = _apiService;
   }
 
-  public async getCircuits(): Promise<Circuit[]> {
+  public async getCircuits(filters?: CircuitFilterQuery): Promise<Circuit[]> {
     try {
+      const url = this.apiService.getUri({ url: "/circuits", params: filters });
+
       const { data } = await this.apiService.get<
         ApiPaginatedResponse<CircuitApi>
-      >("/circuits");
+      >(url);
 
       return this.transformToCircuit(data);
     } catch (error) {

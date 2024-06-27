@@ -1,5 +1,6 @@
 import { Circuit } from "../entities/Circuit";
+import { CircuitFilterQuery } from "./CircuitFilterQuery";
 
 export interface CircuitsRepository {
-  getCircuits(): Promise<Circuit[]>;
+  getCircuits(filters?: CircuitFilterQuery): Promise<Circuit[]>;
 }

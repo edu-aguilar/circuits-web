@@ -10,9 +10,8 @@ export default async function CircuitsPage({
     name?: string;
   };
 }) {
-  console.log(searchParams?.name);
-
-  const circuits = await findCircuits();
+  const circuitName = searchParams?.name || "";
+  const circuits = await findCircuits({ name: circuitName });
 
   return (
     <AppPage>
