@@ -15,11 +15,15 @@ export default async function CircuitsPage({
 
   return (
     <AppPage>
-      <CircuitFilters></CircuitFilters>
-      <div className="flex flex-wrap gap-6 max-w-5xl m-auto justify-center lg:justify-start">
-        {circuits.map((circuit) => {
-          return <CircuitCard key={circuit.id} circuit={circuit}></CircuitCard>;
-        })}
+      <div className="max-w-5xl m-auto">
+        <CircuitFilters></CircuitFilters>
+        <div className="flex flex-wrap gap-6 justify-center lg:justify-start mt-8">
+          {circuits.map((circuit) => {
+            return (
+              <CircuitCard key={circuit.id} circuit={circuit}></CircuitCard>
+            );
+          })}
+        </div>
       </div>
     </AppPage>
   );
