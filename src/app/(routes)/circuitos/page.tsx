@@ -1,10 +1,11 @@
-import { findCircuits } from "@/app/circuits/ui/actions/findCircuits";
-import { CircuitCard } from "@/app/circuits/ui/components/CircuitCard";
+import { CircuitCardSkeleton } from "@/app/circuits/ui/components/CircuitCardSkeleton";
+import { CircuitList } from "@/app/circuits/ui/components/CircuitList";
 import { CircuitProvinceSelector } from "@/app/circuits/ui/components/CircuitProvinceSelector";
 import { CircuitSearchInput } from "@/app/circuits/ui/components/CircuitSearchInput";
 import { Province } from "@/app/common/domain/types/Province";
 import { findProvinces } from "@/app/common/ui/actions/findProvinces";
 import { AppPage } from "@/app/common/ui/components/AppPage";
+import { Suspense } from "react";
 
 export default async function CircuitsPage({
   searchParams,
@@ -24,11 +25,6 @@ export default async function CircuitsPage({
     provinces
   );
 
-  const circuits = await findCircuits({
-    name: circuitName,
-    provinceId: currentProvince?.id,
-  });
-
   return (
     <AppPage>
       <div className="max-w-5xl m-auto">
@@ -40,11 +36,14 @@ export default async function CircuitsPage({
           <CircuitSearchInput></CircuitSearchInput>
         </div>
         <div className="flex flex-wrap gap-6 justify-center lg:justify-start mt-8">
-          {circuits.map((circuit) => {
-            return (
-              <CircuitCard key={circuit.id} circuit={circuit}></CircuitCard>
-            );
-          })}
+          <Suspense fallback={Array(6).fill(<CircuitCardSkeleton />)}>
+            <CircuitList
+              filters={{
+                name: circuitName,
+                provinceId: currentProvince?.id,
+              }}
+            ></CircuitList>
+          </Suspense>
         </div>
       </div>
     </AppPage>
