@@ -1,6 +1,6 @@
 export const CircuitCardSkeleton = () => {
   return (
-    <div className="w-[280px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="w-[280px] bg-white border border-gray-200 rounded-lg shadow">
       <div className="w-full h-[200px] relative rounded-t-lg overflow-hidden flex justify-center items-center bg-gray-100 animate-pulse">
         <div className="w-full h-full bg-gray-300"></div>
       </div>
