@@ -19,7 +19,7 @@ export default async function CircuitsPage({
   const provinceName = urlSearchParams.get("provincia") ?? "";
   const provinces = await findProvinces();
   const currentProvince = Province.findProvinceBy(
-    "name",
+    "urlName",
     provinceName,
     provinces
   );
@@ -33,7 +33,10 @@ export default async function CircuitsPage({
     <AppPage>
       <div className="max-w-5xl m-auto">
         <div className="flex gap-6">
-          <CircuitProvinceSelector provinces={provinces} />
+          <CircuitProvinceSelector
+            provinces={provinces}
+            currentProvince={currentProvince}
+          />
           <CircuitSearchInput></CircuitSearchInput>
         </div>
         <div className="flex flex-wrap gap-6 justify-center lg:justify-start mt-8">

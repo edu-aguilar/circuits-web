@@ -2,6 +2,7 @@ import { ApiService } from "@/app/common/infra/services/CircuitsApiService";
 import { ApiPaginatedResponse } from "@/app/common/infra/types/ApiPaginatedResponse";
 import { ProvinceApi } from "../types/ProvinceApi";
 import { Province } from "../../domain/types/Province";
+import { removeAccents } from "@/app/utils/removeAccents";
 
 export class ProvinceRepository {
   private readonly apiService;
@@ -31,6 +32,7 @@ export class ProvinceRepository {
     return response.data.map((provinceApi) => ({
       id: provinceApi._id,
       name: provinceApi.name,
+      urlName: removeAccents(provinceApi.name),
     }));
   }
 }
