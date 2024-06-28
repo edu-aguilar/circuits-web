@@ -1,22 +1,41 @@
 import { findCircuits } from "@/app/circuits/ui/actions/findCircuits";
 import { CircuitCard } from "@/app/circuits/ui/components/CircuitCard";
-import { CircuitFilters } from "@/app/circuits/ui/components/CircuitFilters";
+import { CircuitProvinceSelector } from "@/app/circuits/ui/components/CircuitProvinceSelector";
+import { CircuitSearchInput } from "@/app/circuits/ui/components/CircuitSearchInput";
+import { Province } from "@/app/common/domain/types/Province";
+import { findProvinces } from "@/app/common/ui/actions/findProvinces";
 import { AppPage } from "@/app/common/ui/components/AppPage";
 
 export default async function CircuitsPage({
   searchParams,
 }: {
   searchParams?: {
-    name?: string;
+    nombre?: string;
+    provincia?: string;
   };
 }) {
-  const circuitName = searchParams?.name || "";
-  const circuits = await findCircuits({ name: circuitName });
+  const urlSearchParams = new URLSearchParams(searchParams);
+  const circuitName = urlSearchParams.get("nombre") ?? undefined;
+  const provinceName = urlSearchParams.get("provincia") ?? "";
+  const provinces = await findProvinces();
+  const currentProvince = Province.findProvinceBy(
+    "name",
+    provinceName,
+    provinces
+  );
+
+  const circuits = await findCircuits({
+    name: circuitName,
+    provinceId: currentProvince?.id,
+  });
 
   return (
     <AppPage>
       <div className="max-w-5xl m-auto">
-        <CircuitFilters></CircuitFilters>
+        <div className="flex gap-6">
+          <CircuitProvinceSelector provinces={provinces} />
+          <CircuitSearchInput></CircuitSearchInput>
+        </div>
         <div className="flex flex-wrap gap-6 justify-center lg:justify-start mt-8">
           {circuits.map((circuit) => {
             return (
