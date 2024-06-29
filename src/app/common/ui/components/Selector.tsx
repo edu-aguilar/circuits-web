@@ -16,6 +16,8 @@ export function Selector<T extends Item>({
   onChange,
   defaultValue = "0",
 }: SelectorProps<T>) {
+  console.log(defaultValue);
+
   return (
     <select
       name="province"
@@ -24,6 +26,7 @@ export function Selector<T extends Item>({
         onChange(event.target.value);
       }}
       defaultValue={defaultValue}
+      className="block p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
     >
       <option value="0">Cualquier provincia</option>
       {items.map((item) => (

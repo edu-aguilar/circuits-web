@@ -16,6 +16,8 @@ export default async function CircuitsPage({
   };
 }) {
   const urlSearchParams = new URLSearchParams(searchParams);
+  console.log(urlSearchParams);
+
   const circuitName = urlSearchParams.get("nombre") ?? undefined;
   const provinceName = urlSearchParams.get("provincia") ?? "";
   const provinces = await findProvinces();
@@ -24,6 +26,8 @@ export default async function CircuitsPage({
     provinceName,
     provinces
   );
+
+  console.log(currentProvince);
 
   return (
     <AppPage>
