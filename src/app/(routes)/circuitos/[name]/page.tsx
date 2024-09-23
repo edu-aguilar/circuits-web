@@ -1,5 +1,7 @@
 import { findCircuits } from "@/app/circuits/ui/actions/findCircuits";
+import { CircuitGallery } from "@/app/circuits/ui/components/CircuitGallery";
 import { AppPage } from "@/app/common/ui/components/AppPage";
+import { GoogleMapsEmbed } from "@next/third-parties/google";
 
 export default async function CircuitsPage({
   params,
@@ -10,16 +12,28 @@ export default async function CircuitsPage({
     nameUrl: params.name,
   });
 
-  const currentCircuit = circuits[0];
+  const circuit = circuits[0];
 
   return (
     <AppPage>
-      <div className="max-w-5xl m-auto">
-        detalle circuito {currentCircuit.name}
-      </div>
-      <div className="max-w-5xl m-auto">
-        detalle circuito {currentCircuit.id}
-      </div>
+      <>
+        <h1 className="text-3xl">Circuito {circuit.name}</h1>
+        <h2 className="text-xl mt-1">Circuito {circuit.address}</h2>
+
+        <div className="mt-8 flex flex-col gap-4">
+          <div className="grow lg:min-w-96">
+            <GoogleMapsEmbed
+              apiKey={process.env.GMAPS_API_KEY as string}
+              height={400}
+              width="100%"
+              mode="place"
+              q={`${circuit.location.lat},${circuit.location.lng}`}
+            />
+          </div>
+
+          <CircuitGallery images={circuit.images} />
+        </div>
+      </>
     </AppPage>
   );
 }

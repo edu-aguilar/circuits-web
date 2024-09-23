@@ -27,7 +27,7 @@ export default async function CircuitsPage({
 
   return (
     <AppPage>
-      <div className="max-w-5xl m-auto">
+      <>
         <div className="flex gap-6">
           <CircuitProvinceSelector
             provinces={provinces}
@@ -45,7 +45,7 @@ export default async function CircuitsPage({
             ></CircuitList>
           </Suspense>
         </div>
-      </div>
+      </>
     </AppPage>
   );
 }
