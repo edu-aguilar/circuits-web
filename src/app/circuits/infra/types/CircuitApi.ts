@@ -1,6 +1,7 @@
 export interface CircuitApi {
   _id: string;
   name: string;
+  nameUrl: string;
   provinceId: string;
   address: string;
   location: {
