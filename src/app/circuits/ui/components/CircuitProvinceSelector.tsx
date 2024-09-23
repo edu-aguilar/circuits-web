@@ -43,8 +43,11 @@ export const CircuitProvinceSelector = ({
   return (
     <Selector
       items={provinces}
+      name="province"
+      id="provinceId"
       onChange={handleProvinceChange}
       defaultValue={selectedProvince ? selectedProvince.id : "0"}
+      anyValueLabel="Cualquier provincia"
     />
   );
 };
