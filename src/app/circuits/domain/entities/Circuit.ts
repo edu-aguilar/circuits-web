@@ -1,6 +1,7 @@
 interface CircuitConstructor {
   id: string;
   name: string;
+  nameUrl: string;
   provinceId: string;
   address: string;
   location: {
@@ -28,6 +29,7 @@ interface CircuitConstructor {
 export class Circuit {
   readonly id: string;
   readonly name: string;
+  readonly nameUrl: string;
   readonly provinceId: string;
   readonly address: string;
   readonly location: {
@@ -54,6 +56,7 @@ export class Circuit {
   constructor(circuit: CircuitConstructor) {
     this.id = circuit.id;
     this.name = circuit.name;
+    this.nameUrl = circuit.nameUrl;
     this.provinceId = circuit.provinceId;
     this.address = circuit.address;
     this.location = circuit.location;

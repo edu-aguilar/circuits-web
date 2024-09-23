@@ -1,5 +1,3 @@
-import { removeAccents } from "@/app/utils/removeAccents";
-
 interface ProvinceConstructor {
   id: string;
   name: string;
