@@ -1,6 +1,7 @@
 import { findCircuits } from "@/app/circuits/ui/actions/findCircuits";
 import { CircuitGallery } from "@/app/circuits/ui/components/CircuitGallery";
 import { AppPage } from "@/app/common/ui/components/AppPage";
+import { ReportComponent } from "@/app/common/ui/components/ReportComponent";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 
 export default async function CircuitsPage({
@@ -17,6 +18,9 @@ export default async function CircuitsPage({
   return (
     <AppPage>
       <>
+        <ReportComponent
+          url={`https://docs.google.com/forms/d/e/1FAIpQLSdfpI96fk2nhMaeH4hN-kGQeD6MK10AAw9NagM4-oMbyzCv_w/viewform?entry.1591967472=${circuit.nameUrl}`}
+        />
         <h1 className="text-3xl">Circuito {circuit.name}</h1>
         <h2 className="text-xl mt-1">Circuito {circuit.address}</h2>
 

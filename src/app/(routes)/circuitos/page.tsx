@@ -5,6 +5,7 @@ import { CircuitSearchInput } from "@/app/circuits/ui/components/CircuitSearchIn
 import { Province } from "@/app/common/domain/types/Province";
 import { findProvinces } from "@/app/common/ui/actions/findProvinces";
 import { AppPage } from "@/app/common/ui/components/AppPage";
+import { ReportComponent } from "@/app/common/ui/components/ReportComponent";
 import { Suspense } from "react";
 
 export default async function CircuitsPage({
@@ -28,6 +29,7 @@ export default async function CircuitsPage({
   return (
     <AppPage>
       <>
+        <ReportComponent url="https://forms.gle/6KwW4BNpQ1DnZ6AM6" />
         <div className="flex gap-6">
           <CircuitProvinceSelector
             provinces={provinces}
