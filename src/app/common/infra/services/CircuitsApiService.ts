@@ -1,3 +1,4 @@
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import axios, { AxiosInstance } from "axios";
 
 export class ApiService {
@@ -14,7 +15,14 @@ export class ApiService {
       });
 
       ApiService.instance.interceptors.request.use(
-        (config) => {
+        async (config) => {
+          const { getAccessTokenRaw } = getKindeServerSession();
+          const accessToken = await getAccessTokenRaw();
+
+          if (accessToken) {
+            config.headers["Authorization"] = `Bearer ${accessToken}`;
+          }
+
           return config;
         },
         (error) => {
