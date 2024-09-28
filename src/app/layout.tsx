@@ -5,6 +5,7 @@ import "./globals.css";
 import Link from "next/link";
 import { inter } from "./fonts";
 import { routes } from "./common/routes";
+import { AuthActions } from "./common/ui/components/AuthActions";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Analytics />
-      <body className={`${inter.className} antialiased flex flex-col min-h-screen	`}>
+      <body
+        className={`${inter.className} antialiased flex flex-col min-h-screen	`}
+      >
         <header className="px-6 md:px-10 py-4 flex items-center shadow-xl">
           <Link href={routes.home.path}>
             <Image
@@ -30,8 +33,9 @@ export default function RootLayout({
               alt="pitbike-image"
             ></Image>
           </Link>
-          <nav className="grow flex justify-end ">
+          <nav className="grow flex justify-end gap-4">
             <Link href={routes.circuits.path}>Circuitos</Link>
+            <AuthActions />
           </nav>
         </header>
         <main className="grow">{children}</main>
