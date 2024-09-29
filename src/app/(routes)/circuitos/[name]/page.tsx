@@ -1,4 +1,4 @@
-import { findCircuits } from "@/app/circuits/ui/actions/findCircuits";
+import { findCircuit } from "@/app/circuits/ui/actions/findCircuit";
 import { CircuitGallery } from "@/app/circuits/ui/components/CircuitGallery";
 import { AppPage } from "@/app/common/ui/components/AppPage";
 import { ReportComponent } from "@/app/common/ui/components/ReportComponent";
@@ -9,7 +9,7 @@ export default async function CircuitsPage({
 }: {
   params: { name: string };
 }) {
-  const circuits = await findCircuits({
+  const circuits = await findCircuit({
     nameUrl: params.name,
   });
 
