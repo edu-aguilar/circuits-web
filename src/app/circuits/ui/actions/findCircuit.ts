@@ -11,5 +11,5 @@ export const findCircuit = async (filters?: CircuitFilterQuery) => {
     notFound();
   }
 
-  return circuits;
+  return circuits[0];
 };

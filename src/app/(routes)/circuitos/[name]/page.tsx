@@ -3,17 +3,32 @@ import { CircuitGallery } from "@/app/circuits/ui/components/CircuitGallery";
 import { AppPage } from "@/app/common/ui/components/AppPage";
 import { ReportComponent } from "@/app/common/ui/components/ReportComponent";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
+import { Metadata } from "next";
 
-export default async function CircuitsPage({
-  params,
-}: {
+type CircuitPageProps = {
   params: { name: string };
-}) {
-  const circuits = await findCircuit({
+};
+
+export async function generateMetadata({
+  params,
+}: CircuitPageProps): Promise<Metadata> {
+  const circuit = await findCircuit({
     nameUrl: params.name,
   });
 
-  const circuit = circuits[0];
+  const title = `Circuito para pitbikes ${circuit.name} - Información, Horarios y Ubicación para Pitbikes`;
+  const description = `Descubre todo sobre ${circuit.name}. Información completa sobre horarios, tarifas, ubicación, y detalles técnicos para rodar con tu pitbike en asfalto. ¡Encuentra tu próximo desafío!`;
+
+  return {
+    title,
+    description,
+  };
+}
+
+export default async function CircuitPage({ params }: CircuitPageProps) {
+  const circuit = await findCircuit({
+    nameUrl: params.name,
+  });
 
   return (
     <AppPage>
