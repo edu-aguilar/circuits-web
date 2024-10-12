@@ -6,6 +6,7 @@ import Link from "next/link";
 import { inter } from "./fonts";
 import { routes } from "./common/routes";
 import { AuthActions } from "./common/ui/components/AuthActions";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title:
@@ -21,7 +22,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Analytics />
       <body
         className={`${inter.className} antialiased flex flex-col min-h-screen	`}
       >
@@ -42,6 +42,8 @@ export default function RootLayout({
         </header>
         <main className="grow">{children}</main>
       </body>
+      <Analytics />
+      <GoogleAnalytics gaId="G-79T44YNQVK" />
     </html>
   );
 }
