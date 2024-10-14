@@ -9,6 +9,7 @@ export interface CircuitApi {
     lng: string;
   };
   images: string[];
+  description?: string;
   website?: string;
   price?: {
     half?: number;
