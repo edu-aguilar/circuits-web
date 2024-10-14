@@ -20,7 +20,7 @@ export const CircuitCard = ({ circuit }: CircuitCardProps) => {
           />
         </div>
         <div className="p-5">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 min-h-16 line-clamp-2 text-ellipsis">
             {circuit.name}
           </h5>
           <p className="mb-3 font-normal text-gray-700 line-clamp-2">
