@@ -37,7 +37,6 @@ export default function RootLayout({
           </Link>
           <nav className="grow flex justify-end gap-4">
             <Link href={routes.circuits.path}>Circuitos</Link>
-            <AuthActions />
           </nav>
         </header>
         <main className="grow">{children}</main>
