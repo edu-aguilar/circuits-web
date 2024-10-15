@@ -54,13 +54,17 @@ export default async function CircuitsPage({
   return (
     <AppPage>
       <>
-        <ReportComponent url="https://forms.gle/6KwW4BNpQ1DnZ6AM6" />
         <div className="flex gap-6">
-          <CircuitProvinceSelector
-            provinces={provinces}
-            currentProvince={currentProvince}
-          />
-          <CircuitSearchInput></CircuitSearchInput>
+          <div className="flex gap-6 flex-col sm:flex-row grow">
+            <CircuitProvinceSelector
+              provinces={provinces}
+              currentProvince={currentProvince}
+            />
+            <CircuitSearchInput></CircuitSearchInput>
+          </div>
+          <div>
+            <ReportComponent url="https://forms.gle/6KwW4BNpQ1DnZ6AM6" />
+          </div>
         </div>
         <div className="flex flex-wrap gap-6 justify-center lg:justify-start mt-8">
           <Suspense fallback={Array(6).fill(<CircuitCardSkeleton />)}>

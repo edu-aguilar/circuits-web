@@ -2,9 +2,13 @@
 
 interface ReportComponentProps {
   url: string;
+  title?: string;
 }
 
-export const ReportComponent = ({ url }: ReportComponentProps) => {
+export const ReportComponent = ({
+  url,
+  title = "Reportar error",
+}: ReportComponentProps) => {
   return (
     <div className="sm:absolute right-0 sm:mx-6 md:mx-10 flex justify-end mb-4">
       <button
@@ -14,7 +18,7 @@ export const ReportComponent = ({ url }: ReportComponentProps) => {
         }}
       >
         <span className="sm:hidden">!</span>
-        <span className="hidden sm:block">Reportar error</span>
+        <span className="hidden sm:block">{title}</span>
       </button>
     </div>
   );
