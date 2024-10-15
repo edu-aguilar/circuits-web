@@ -6,6 +6,7 @@ import Link from "next/link";
 import { inter } from "./fonts";
 import { routes } from "./common/routes";
 import { GoogleAnalytics } from "./common/ui/components/GoogleAnalytics";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title:
@@ -40,8 +41,10 @@ export default function RootLayout({
         </header>
         <main className="grow">{children}</main>
       </body>
-      <Analytics />
-      <GoogleAnalytics />
+      <Suspense>
+        <Analytics />
+        <GoogleAnalytics />
+      </Suspense>
     </html>
   );
 }
