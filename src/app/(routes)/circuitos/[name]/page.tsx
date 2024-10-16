@@ -33,11 +33,13 @@ export default async function CircuitPage({ params }: CircuitPageProps) {
 
   return (
     <AppPage>
-      <>
-        <ReportComponent
-          url={`https://docs.google.com/forms/d/e/1FAIpQLSdfpI96fk2nhMaeH4hN-kGQeD6MK10AAw9NagM4-oMbyzCv_w/viewform?entry.1591967472=${circuit.nameUrl}`}
-        />
-        <h1 className="text-3xl">Circuito {circuit.name}</h1>
+      <div className="relative">
+        <div className="flex">
+          <h1 className="text-3xl grow">Circuito {circuit.name}</h1>
+          <ReportComponent
+            url={`https://docs.google.com/forms/d/e/1FAIpQLSdfpI96fk2nhMaeH4hN-kGQeD6MK10AAw9NagM4-oMbyzCv_w/viewform?entry.1591967472=${circuit.nameUrl}`}
+          />
+        </div>
 
         <h2 className="text-2xl mt-5">Dirección</h2>
         <h3 className="text-l mt-1">{circuit.address}</h3>
@@ -127,7 +129,7 @@ export default async function CircuitPage({ params }: CircuitPageProps) {
           <h2 className="text-2xl mt-5">Imágenes</h2>
           <CircuitGallery images={circuit.images} />
         </div>
-      </>
+      </div>
     </AppPage>
   );
 }

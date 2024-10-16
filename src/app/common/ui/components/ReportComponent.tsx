@@ -10,15 +10,15 @@ export const ReportComponent = ({
   title = "Reportar error",
 }: ReportComponentProps) => {
   return (
-    <div className="sm:absolute right-0 sm:mx-6 md:mx-10 flex justify-end mb-4">
+    <div className="fixed left-4 bottom-4 z-10 sm:top-0 sm:right-0 sm:relative sm:left-auto">
       <button
         className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         onClick={() => {
           window.open(url, "_blank");
         }}
       >
-        <span className="sm:hidden">!</span>
-        <span className="hidden sm:block">{title}</span>
+        {/* <span className="sm:hidden">!</span> */}
+        <span>{title}</span>
       </button>
     </div>
   );
