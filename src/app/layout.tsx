@@ -7,6 +7,7 @@ import { inter } from "./fonts";
 import { routes } from "./common/routes";
 import { GoogleAnalytics } from "./common/ui/components/GoogleAnalytics";
 import { Suspense } from "react";
+import { AdSense } from "./common/ui/components/AdSense";
 
 export const metadata: Metadata = {
   title:
@@ -22,6 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <AdSense pid="pub-6477691629525796" />
+      </head>
       <body
         className={`${inter.className} antialiased flex flex-col min-h-screen	`}
       >
