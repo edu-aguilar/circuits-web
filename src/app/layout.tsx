@@ -41,7 +41,7 @@ export default function RootLayout({
           <Link href={routes.home.path}>
             <Image
               className="rounded-full"
-              src="/icon.jpg"
+              src="/favicon-180x180.png"
               width={48}
               height={48}
               alt="pitbike-image"
