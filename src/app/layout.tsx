@@ -31,6 +31,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon-512x512.png" sizes="512x512" />
         <link rel="manifest" href="/manifest.json" />
 
+        <meta name="google-site-verification" content="aTDwnWMa_KG-mAFtDZa1QYWTXprMQAD1nhU-3DaUz6M" />
         <meta name="google-adsense-account" content="ca-pub-6477691629525796" />
         <AdSense pid="pub-6477691629525796" />
       </head>
