@@ -18,10 +18,7 @@ export const AuthActions = async () => {
         </>
       )}
       {!!user && (
-        <>
-          <span>Hola, {user.given_name}</span>
-          <LogoutLink>Cerrar sesión</LogoutLink>
-        </>
+        <LogoutLink>Cerrar sesión</LogoutLink>
       )}
     </>
   );
