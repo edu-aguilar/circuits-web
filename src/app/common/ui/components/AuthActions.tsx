@@ -1,26 +1,21 @@
 import {
-  getKindeServerSession,
   LoginLink,
   LogoutLink,
   RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/server";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
-export const AuthActions = async () => {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+export const AuthActions = async ({ user }: {  user: KindeUser<Record<string, any>> | null }) => {
 
   return (
     <>
+      {!!user && (
+        <LogoutLink>Cerrar sesión</LogoutLink>
+      )}
       {!user && (
         <>
           <RegisterLink>Registro</RegisterLink>{" "}
           <LoginLink>Iniciar sesión</LoginLink>
-        </>
-      )}
-      {!!user && (
-        <>
-          <span>Hola, {user.given_name}</span>
-          <LogoutLink>Cerrar sesión</LogoutLink>
         </>
       )}
     </>
