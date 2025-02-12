@@ -9,6 +9,7 @@ interface CircuitConstructor {
     lng: string;
   };
   images: string[];
+  description?: string;
   website?: string;
   price?: {
     half?: number;
@@ -37,18 +38,19 @@ export class Circuit {
     lng: string;
   };
   readonly images: string[];
-  website?: string;
-  price?: {
+  readonly description?: string;
+  readonly website?: string;
+  readonly price?: {
     half?: number;
     complete?: number;
   };
-  social?: {
+  readonly social?: {
     instagram?: string;
     facebook?: string;
   };
-  distance?: number;
-  width?: number;
-  settings?: {
+  readonly distance?: number;
+  readonly width?: number;
+  readonly settings?: {
     160?: string;
     190?: string;
   };
@@ -61,6 +63,7 @@ export class Circuit {
     this.address = circuit.address;
     this.location = circuit.location;
     this.images = circuit.images;
+    this.description = circuit.description;
     this.website = circuit.website;
     this.price = circuit.price;
     this.social = circuit.social;

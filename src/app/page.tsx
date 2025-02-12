@@ -10,7 +10,7 @@ export default function Home() {
         <Link href={routes.circuits.path}>
           <section className="flex flex-col lg:flex-row w-full max-w-screen-lg">
             <Image
-              src="/karting-circuit.jpg"
+              src="https://ik.imagekit.io/yulujpacgzq/todopitbike/karting-circuit_zEDaaAEyo.jpg"
               width={700}
               height={233}
               alt="pitbike-circuit"
