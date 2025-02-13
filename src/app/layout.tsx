@@ -1,13 +1,11 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import "./globals.css";
-import Link from "next/link";
 import { inter } from "./fonts";
-import { routes } from "./common/routes";
 import { GoogleAnalytics } from "./common/ui/components/GoogleAnalytics";
 import { Suspense } from "react";
 import { AdSense } from "./common/ui/components/AdSense";
+import { Header } from "./common/ui/components/Header/Header";
 
 export const metadata: Metadata = {
   title:
@@ -38,20 +36,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased flex flex-col min-h-screen	`}
       >
-        <header className="px-6 md:px-10 py-4 flex items-center shadow-xl">
-          <Link href={routes.home.path}>
-            <Image
-              className="rounded-full"
-              src="/favicon-180x180.png"
-              width={48}
-              height={48}
-              alt="pitbike-image"
-            ></Image>
-          </Link>
-          <nav className="grow flex justify-end gap-4">
-            <Link href={routes.circuits.path}>Circuitos</Link>
-          </nav>
-        </header>
+        <Header />
         <main className="grow">{children}</main>
       </body>
       <Suspense>

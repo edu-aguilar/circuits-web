@@ -2,7 +2,6 @@
 
 import { Province } from "@/app/common/domain/types/Province";
 import { Selector } from "@/app/common/ui/components/Selector";
-import { removeAccents } from "@/app/utils/removeAccents";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
