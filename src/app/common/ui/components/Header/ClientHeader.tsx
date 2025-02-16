@@ -17,7 +17,7 @@ export const ClientHeader = ({ authActions, user }: ClientHeaderProps) => {
     <header className="px-6 md:px-10 py-4 flex items-center shadow-xl justify-between">
       <div className="flex items-center gap-4">
         <Link href="/">
-          <Image className="rounded-full" src="/icon.jpg" width={48} height={48} alt="pitbike-image" />
+          <Image className="rounded-full" src="/favicon-180x180.png" width={48} height={48} alt="pitbike-image" />
         </Link>
         {user && <span>Hola, {user.given_name}</span>}
       </div>
