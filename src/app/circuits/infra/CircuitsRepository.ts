@@ -15,6 +15,8 @@ export class CircuitsRepository {
     try {
       const url = this.apiService.getUri({ url: "/circuits", params: filters });
 
+      console.log(url);
+
       const { data } = await this.apiService.get<
         ApiPaginatedResponse<CircuitApi>
       >(url);

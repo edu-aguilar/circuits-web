@@ -1,17 +1,20 @@
 "use client";
 
 import { Province } from "@/app/common/domain/types/Province";
+import { Region } from "@/app/common/domain/types/Region";
 import { Selector } from "@/app/common/ui/components/Selector";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface CircuitProvinceSelectorProps {
+  regions: Region[];
   provinces: Province[];
   currentProvince?: Province;
 }
 
 export const CircuitProvinceSelector = ({
+  regions,
   provinces,
   currentProvince,
 }: CircuitProvinceSelectorProps) => {
@@ -36,6 +39,8 @@ export const CircuitProvinceSelector = ({
       setSelectedProvince(null);
       params.delete("provincia");
     }
+    console.log(params.toString());
+    
     replace(`${pathName}?${params.toString()}`);
   };
 

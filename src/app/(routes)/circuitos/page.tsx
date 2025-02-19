@@ -59,6 +59,7 @@ export default async function CircuitsPage({
     regionName,
     regions
   );
+  
 
   return (
     <AppPage>

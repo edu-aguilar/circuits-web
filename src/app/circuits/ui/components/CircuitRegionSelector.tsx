@@ -30,6 +30,7 @@ export const CircuitRegionSelector = ({
       const selectedRegion = Region.findRegionBy("id", value, regions);
       if (selectedRegion) {
         setSelectedRegion(selectedRegion);
+        params.delete("provincia");
         params.set("region", selectedRegion.urlName);
       }
     } else {

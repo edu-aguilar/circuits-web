@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Province } from "@/app/common/domain/types/Province";
 import { CircuitProvinceSelector } from "./CircuitProvinceSelector";
@@ -17,13 +17,19 @@ export const CircuitFilters = ({
   provinces,
   currentProvince,
   regions,
-  currentRegion
+  currentRegion,
 }: CircuitFiltersProps) => {
+  
+  const provincesFromRegion = currentRegion
+    ? provinces.filter((province) => province.regionId === currentRegion.id)
+    : provinces;
+
   return (
     <div className="flex gap-6 flex-col sm:flex-row grow">
       <CircuitRegionSelector regions={regions} currentRegion={currentRegion} />
       <CircuitProvinceSelector
-        provinces={provinces}
+        regions={regions}
+        provinces={provincesFromRegion}
         currentProvince={currentProvince}
       />
       <CircuitSearchInput />
