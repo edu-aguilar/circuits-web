@@ -1,9 +1,10 @@
 import { CircuitCardSkeleton } from "@/app/circuits/ui/components/CircuitCardSkeleton";
+import { CircuitFilters } from "@/app/circuits/ui/components/CircuitFilters";
 import { CircuitList } from "@/app/circuits/ui/components/CircuitList";
-import { CircuitProvinceSelector } from "@/app/circuits/ui/components/CircuitProvinceSelector";
-import { CircuitSearchInput } from "@/app/circuits/ui/components/CircuitSearchInput";
 import { Province } from "@/app/common/domain/types/Province";
+import { Region } from "@/app/common/domain/types/Region";
 import { findProvinces } from "@/app/common/ui/actions/findProvinces";
+import { findRegions } from "@/app/common/ui/actions/findRegions";
 import { AppPage } from "@/app/common/ui/components/AppPage";
 import { ReportComponent } from "@/app/common/ui/components/ReportComponent";
 import { Metadata } from "next";
@@ -44,24 +45,26 @@ export default async function CircuitsPage({
   const urlSearchParams = new URLSearchParams(searchParams);
   const circuitName = urlSearchParams.get("nombre") ?? undefined;
   const provinceName = urlSearchParams.get("provincia") ?? "";
+  const regionName = urlSearchParams.get("region") ?? "";
+
   const provinces = await findProvinces();
+  const regions = await findRegions();
   const currentProvince = Province.findProvinceBy(
     "urlName",
     provinceName,
     provinces
+  );
+  const currentRegion = Region.findRegionBy(
+    "urlName",
+    regionName,
+    regions
   );
 
   return (
     <AppPage>
       <>
         <div className="flex gap-6 relative items-center">
-          <div className="flex gap-6 flex-col sm:flex-row grow">
-            <CircuitProvinceSelector
-              provinces={provinces}
-              currentProvince={currentProvince}
-            />
-            <CircuitSearchInput></CircuitSearchInput>
-          </div>
+          <CircuitFilters provinces={provinces} currentProvince={currentProvince} regions={regions} currentRegion={currentRegion} />
           <ReportComponent
             title="¿Falta algún circuito? Añádelo!"
             url="https://forms.gle/6KwW4BNpQ1DnZ6AM6"
@@ -73,6 +76,7 @@ export default async function CircuitsPage({
               filters={{
                 name: circuitName,
                 provinceId: currentProvince?.id,
+                regionId: currentRegion?.id
               }}
             ></CircuitList>
           </Suspense>
