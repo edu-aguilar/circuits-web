@@ -27,7 +27,7 @@ export class ApiService {
         },
         (error) => {
           return Promise.reject(error);
-        }
+        },
       );
 
       ApiService.instance.interceptors.response.use(
@@ -36,7 +36,7 @@ export class ApiService {
         },
         (error) => {
           return Promise.reject(error);
-        }
+        },
       );
     }
 

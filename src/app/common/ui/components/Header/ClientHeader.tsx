@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -6,8 +6,8 @@ import { useState } from "react";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
 interface ClientHeaderProps {
-  authActions: JSX.Element,
-  user: KindeUser<Record<string, any>> | null
+  authActions: JSX.Element;
+  user: KindeUser<Record<string, unknown>> | null;
 }
 
 export const ClientHeader = ({ authActions, user }: ClientHeaderProps) => {
@@ -21,7 +21,7 @@ export const ClientHeader = ({ authActions, user }: ClientHeaderProps) => {
         </Link>
         {user && <span>Hola, {user.given_name}</span>}
       </div>
-      
+
       <nav className="hidden md:flex gap-4 items-center">
         {authActions}
         <Link href="/circuitos">Circuitos</Link>
@@ -29,14 +29,16 @@ export const ClientHeader = ({ authActions, user }: ClientHeaderProps) => {
 
       <div className="md:hidden">
         <button onClick={() => setMenuOpen(!menuOpen)} className="focus:outline-none">
-          {menuOpen ? '✖' : '☰'}
+          {menuOpen ? "✖" : "☰"}
         </button>
       </div>
 
       {menuOpen && (
         <div className="absolute top-16 right-6 bg-white shadow-lg rounded-lg p-4 flex flex-col gap-2 md:hidden">
           {authActions}
-          <Link href="/circuitos" onClick={() => setMenuOpen(false)}>Circuitos</Link>
+          <Link href="/circuitos" onClick={() => setMenuOpen(false)}>
+            Circuitos
+          </Link>
         </div>
       )}
     </header>

@@ -25,11 +25,7 @@ export const CircuitGallery = ({ images }: CircuitGalleryProps) => {
     <div>
       <div className="grid grid-cols-2 gap-4">
         {images.map((image, index) => (
-          <div
-            key={index}
-            className="cursor-pointer overflow-hidden rounded-lg"
-            onClick={() => openModal(image)}
-          >
+          <div key={index} className="cursor-pointer overflow-hidden rounded-lg" onClick={() => openModal(image)}>
             <img
               src={image}
               alt={`image-${index}`}
@@ -53,11 +49,7 @@ export const CircuitGallery = ({ images }: CircuitGalleryProps) => {
             >
               ✕
             </button>
-            <img
-              src={selectedImage}
-              alt="Selected"
-              className="max-w-full max-h-[80vh] object-contain"
-            />
+            <img src={selectedImage} alt="Selected" className="max-w-full max-h-[80vh] object-contain" />
           </div>
         </Modal>
       )}

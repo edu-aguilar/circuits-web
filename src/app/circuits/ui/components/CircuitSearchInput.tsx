@@ -25,10 +25,7 @@ export const CircuitSearchInput = () => {
 
   return (
     <div className="relative flex">
-      <SearchInput
-        onChange={handleSearch}
-        defaultValue={circuitName}
-      ></SearchInput>
+      <SearchInput onChange={handleSearch} defaultValue={circuitName}></SearchInput>
     </div>
   );
 };

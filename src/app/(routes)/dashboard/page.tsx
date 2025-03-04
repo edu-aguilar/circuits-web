@@ -1,7 +1,5 @@
-import { PrivatePage } from "@/app/common/ui/components/PrivatePage"
+import { PrivatePage } from "@/app/common/ui/components/PrivatePage";
 
 export default function DashboardPage() {
-  return <PrivatePage>
-    DASHBOARD
-  </PrivatePage>
+  return <PrivatePage>DASHBOARD</PrivatePage>;
 }

@@ -15,11 +15,7 @@ export class Region {
     this.urlName = region.urlName;
   }
 
-  static findRegionBy = <K extends keyof Region>(
-    key: K,
-    value: Region[K],
-    regions: Region[]
-  ): Region | undefined => {
+  static findRegionBy = <K extends keyof Region>(key: K, value: Region[K], regions: Region[]): Region | undefined => {
     return regions.find((region) => region[key] === value);
   };
 }

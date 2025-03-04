@@ -15,9 +15,7 @@ export class CircuitsRepository {
     try {
       const url = this.apiService.getUri({ url: "/circuits", params: filters });
 
-      const { data } = await this.apiService.get<
-        ApiPaginatedResponse<CircuitApi>
-      >(url);
+      const { data } = await this.apiService.get<ApiPaginatedResponse<CircuitApi>>(url);
 
       return this.transformToCircuit(data);
     } catch (error) {
@@ -26,15 +24,13 @@ export class CircuitsRepository {
     }
   }
 
-  private transformToCircuit(
-    response: ApiPaginatedResponse<CircuitApi>
-  ): Circuit[] {
+  private transformToCircuit(response: ApiPaginatedResponse<CircuitApi>): Circuit[] {
     return response.data.map(
       (circuitApi) =>
         new Circuit({
           id: circuitApi._id,
           ...circuitApi,
-        })
+        }),
     );
   }
 }

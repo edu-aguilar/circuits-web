@@ -15,9 +15,7 @@ export class ProvinceRepository {
     try {
       const url = this.apiService.getUri({ url: "/provinces" });
 
-      const { data } = await this.apiService.get<
-        ApiPaginatedResponse<ProvinceApi>
-      >(url);
+      const { data } = await this.apiService.get<ApiPaginatedResponse<ProvinceApi>>(url);
 
       return this.transformToProvince(data);
     } catch (error) {
@@ -26,9 +24,7 @@ export class ProvinceRepository {
     }
   }
 
-  private transformToProvince(
-    response: ApiPaginatedResponse<ProvinceApi>
-  ): Province[] {
+  private transformToProvince(response: ApiPaginatedResponse<ProvinceApi>): Province[] {
     return response.data.map((provinceApi) => ({
       id: provinceApi._id,
       name: provinceApi.name,

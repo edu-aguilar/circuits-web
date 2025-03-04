@@ -12,17 +12,12 @@ interface CircuitRegionSelectorProps {
   currentRegion?: Region;
 }
 
-export const CircuitRegionSelector = ({
-  regions,
-  currentRegion,
-}: CircuitRegionSelectorProps) => {
+export const CircuitRegionSelector = ({ regions, currentRegion }: CircuitRegionSelectorProps) => {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const { replace } = useRouter();
 
-  const [selectedRegion, setSelectedRegion] = useState<Region | null>(
-    currentRegion ?? null
-  );
+  const [selectedRegion, setSelectedRegion] = useState<Region | null>(currentRegion ?? null);
 
   const handleRegionChange = (value: string) => {
     const params = new URLSearchParams(searchParams);

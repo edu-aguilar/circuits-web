@@ -19,9 +19,7 @@ export const CircuitList = async ({ filters }: CircuitListProps) => {
       {circuits.map((circuit) => {
         return <CircuitCard key={circuit.id} circuit={circuit}></CircuitCard>;
       })}
-      {circuits.length === 0 && (
-        <EmptyState title="No se han encontrado circuitos" />
-      )}
+      {circuits.length === 0 && <EmptyState title="No se han encontrado circuitos" />}
     </>
   );
 };

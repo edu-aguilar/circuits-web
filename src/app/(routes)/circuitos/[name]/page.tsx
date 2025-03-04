@@ -10,9 +10,7 @@ type CircuitPageProps = {
   params: { name: string };
 };
 
-export async function generateMetadata({
-  params,
-}: CircuitPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: CircuitPageProps): Promise<Metadata> {
   const circuit = await findCircuit({
     nameUrl: params.name,
   });
@@ -47,23 +45,15 @@ export default async function CircuitPage({ params }: CircuitPageProps) {
         {circuit.description && (
           <>
             <h2 className="text-2xl mt-5">Descripción</h2>
-            {circuit.description && (
-              <h3 className="text-l mt-1">{circuit.description}</h3>
-            )}
+            {circuit.description && <h3 className="text-l mt-1">{circuit.description}</h3>}
           </>
         )}
 
         {circuit.price && (
           <>
             <h2 className="text-2xl mt-5">Precio</h2>
-            {circuit.price.half && (
-              <h3 className="text-l mt-1">{circuit.price.half}€ medio día</h3>
-            )}
-            {circuit.price.complete && (
-              <h3 className="text-l mt-1">
-                {circuit.price.complete}€ día completo
-              </h3>
-            )}
+            {circuit.price.half && <h3 className="text-l mt-1">{circuit.price.half}€ medio día</h3>}
+            {circuit.price.complete && <h3 className="text-l mt-1">{circuit.price.complete}€ día completo</h3>}
           </>
         )}
 
@@ -90,23 +80,13 @@ export default async function CircuitPage({ params }: CircuitPageProps) {
         {Boolean(circuit.distance || circuit.width || circuit.settings) && (
           <>
             <h2 className="text-2xl mt-5">Detalles técnicos del circuito</h2>
-            {circuit.distance && (
-              <h3 className="text-l mt-1">
-                Distancia: {circuit.distance} metros
-              </h3>
-            )}
-            {circuit.width && (
-              <h3 className="text-l mt-1">Anchura: {circuit.width} metros</h3>
-            )}
+            {circuit.distance && <h3 className="text-l mt-1">Distancia: {circuit.distance} metros</h3>}
+            {circuit.width && <h3 className="text-l mt-1">Anchura: {circuit.width} metros</h3>}
             {circuit.settings && circuit.settings[160] && (
-              <h3 className="text-l mt-1">
-                Desarrollo motor 160: {circuit.settings[160]}
-              </h3>
+              <h3 className="text-l mt-1">Desarrollo motor 160: {circuit.settings[160]}</h3>
             )}
             {circuit.settings && circuit.settings[190] && (
-              <h3 className="text-l mt-1">
-                Desarrollo motor 190: {circuit.settings[190]}
-              </h3>
+              <h3 className="text-l mt-1">Desarrollo motor 190: {circuit.settings[190]}</h3>
             )}
           </>
         )}

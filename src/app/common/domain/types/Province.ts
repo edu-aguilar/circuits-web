@@ -1,5 +1,3 @@
-import { Region } from "./Region";
-
 interface ProvinceConstructor {
   id: string;
   name: string;
@@ -23,7 +21,7 @@ export class Province {
   static findProvinceBy = <K extends keyof Province>(
     key: K,
     value: Province[K],
-    provinces: Province[]
+    provinces: Province[],
   ): Province | undefined => {
     return provinces.find((province) => province[key] === value);
   };

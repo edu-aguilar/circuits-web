@@ -13,13 +13,7 @@ interface CircuitFiltersProps {
   currentRegion?: Region;
 }
 
-export const CircuitFilters = ({
-  provinces,
-  currentProvince,
-  regions,
-  currentRegion,
-}: CircuitFiltersProps) => {
-  
+export const CircuitFilters = ({ provinces, currentProvince, regions, currentRegion }: CircuitFiltersProps) => {
   const provincesFromRegion = currentRegion
     ? provinces.filter((province) => province.regionId === currentRegion.id)
     : provinces;
@@ -27,11 +21,7 @@ export const CircuitFilters = ({
   return (
     <div className="flex gap-6 flex-col sm:flex-row grow">
       <CircuitRegionSelector regions={regions} currentRegion={currentRegion} />
-      <CircuitProvinceSelector
-        regions={regions}
-        provinces={provincesFromRegion}
-        currentProvince={currentProvince}
-      />
+      <CircuitProvinceSelector provinces={provincesFromRegion} currentProvince={currentProvince} />
       <CircuitSearchInput />
     </div>
   );

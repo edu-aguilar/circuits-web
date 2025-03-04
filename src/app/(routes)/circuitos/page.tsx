@@ -18,15 +18,12 @@ type CircuitsPageProps = {
   };
 };
 
-export async function generateMetadata({
-  searchParams,
-}: CircuitsPageProps): Promise<Metadata> {
+export async function generateMetadata({ searchParams }: CircuitsPageProps): Promise<Metadata> {
   const urlSearchParams = new URLSearchParams(searchParams);
   const provinceName = urlSearchParams.get(CircuitSearchParams.province) ?? "";
   const regionName = urlSearchParams.get(CircuitSearchParams.region) ?? "";
 
-  let title =
-    "Circuitos de Pitbike en España - encuentra pistas por provincia y nombre";
+  let title = "Circuitos de Pitbike en España - encuentra pistas por provincia y nombre";
   let description =
     "Explora los mejores circuitos de pitbike de asfalto en España. Busca por nombre o provincia para encontrar la pista perfecta para rodar con tu pitbike. Toda la información que necesitas sobre circuitos cerca de ti.";
 
@@ -46,9 +43,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function CircuitsPage({
-  searchParams,
-}: CircuitsPageProps) {
+export default async function CircuitsPage({ searchParams }: CircuitsPageProps) {
   const urlSearchParams = new URLSearchParams(searchParams);
   const circuitName = urlSearchParams.get(CircuitSearchParams.name) ?? undefined;
   const provinceName = urlSearchParams.get(CircuitSearchParams.province) ?? "";
@@ -56,27 +51,20 @@ export default async function CircuitsPage({
 
   const provinces = await findProvinces();
   const regions = await findRegions();
-  const currentProvince = Province.findProvinceBy(
-    "urlName",
-    provinceName,
-    provinces
-  );
-  const currentRegion = Region.findRegionBy(
-    "urlName",
-    regionName,
-    regions
-  );
-  
+  const currentProvince = Province.findProvinceBy("urlName", provinceName, provinces);
+  const currentRegion = Region.findRegionBy("urlName", regionName, regions);
 
   return (
     <AppPage>
       <>
         <div className="flex gap-6 relative items-center">
-          <CircuitFilters provinces={provinces} currentProvince={currentProvince} regions={regions} currentRegion={currentRegion} />
-          <ReportComponent
-            title="¿Falta algún circuito? Añádelo!"
-            url="https://forms.gle/6KwW4BNpQ1DnZ6AM6"
+          <CircuitFilters
+            provinces={provinces}
+            currentProvince={currentProvince}
+            regions={regions}
+            currentRegion={currentRegion}
           />
+          <ReportComponent title="¿Falta algún circuito? Añádelo!" url="https://forms.gle/6KwW4BNpQ1DnZ6AM6" />
         </div>
         <div className="flex flex-wrap gap-6 justify-center lg:justify-start mt-8">
           <Suspense fallback={Array(6).fill(<CircuitCardSkeleton />)}>
@@ -84,7 +72,7 @@ export default async function CircuitsPage({
               filters={{
                 name: circuitName,
                 provinceId: currentProvince?.id,
-                regionId: currentRegion?.id
+                regionId: currentRegion?.id,
               }}
             ></CircuitList>
           </Suspense>

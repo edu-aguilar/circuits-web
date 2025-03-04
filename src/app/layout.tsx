@@ -33,9 +33,7 @@ export default function RootLayout({
         <meta name="google-adsense-account" content="ca-pub-6477691629525796" />
         <AdSense pid="pub-6477691629525796" />
       </head>
-      <body
-        className={`${inter.className} antialiased flex flex-col min-h-screen	`}
-      >
+      <body className={`${inter.className} antialiased flex flex-col min-h-screen	`}>
         <Header />
         <main className="grow">{children}</main>
       </body>

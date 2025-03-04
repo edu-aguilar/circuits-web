@@ -10,5 +10,3 @@ export const Header = async () => {
 
   return <ClientHeader user={user} authActions={authActions} />;
 };
-
-
