@@ -5,6 +5,7 @@ import { Selector } from "@/app/common/ui/components/Selector";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { CircuitSearchParams } from "../CircuitSearchParams";
 
 interface CircuitRegionSelectorProps {
   regions: Region[];
@@ -30,12 +31,12 @@ export const CircuitRegionSelector = ({
       const selectedRegion = Region.findRegionBy("id", value, regions);
       if (selectedRegion) {
         setSelectedRegion(selectedRegion);
-        params.delete("provincia");
-        params.set("region", selectedRegion.urlName);
+        params.delete(CircuitSearchParams.province);
+        params.set(CircuitSearchParams.region, selectedRegion.urlName);
       }
     } else {
       setSelectedRegion(null);
-      params.delete("region");
+      params.delete(CircuitSearchParams.region);
     }
     replace(`${pathName}?${params.toString()}`);
   };

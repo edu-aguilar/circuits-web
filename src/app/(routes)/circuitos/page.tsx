@@ -1,3 +1,4 @@
+import { CircuitSearchParams } from "@/app/circuits/ui/CircuitSearchParams";
 import { CircuitCardSkeleton } from "@/app/circuits/ui/components/CircuitCardSkeleton";
 import { CircuitFilters } from "@/app/circuits/ui/components/CircuitFilters";
 import { CircuitList } from "@/app/circuits/ui/components/CircuitList";
@@ -21,7 +22,8 @@ export async function generateMetadata({
   searchParams,
 }: CircuitsPageProps): Promise<Metadata> {
   const urlSearchParams = new URLSearchParams(searchParams);
-  const provinceName = urlSearchParams.get("provincia") ?? "";
+  const provinceName = urlSearchParams.get(CircuitSearchParams.province) ?? "";
+  const regionName = urlSearchParams.get(CircuitSearchParams.region) ?? "";
 
   let title =
     "Circuitos de Pitbike en España - encuentra pistas por provincia y nombre";
@@ -31,6 +33,11 @@ export async function generateMetadata({
   if (provinceName) {
     title = `Circuitos de Pitbike en ${provinceName} - encuentra circuitos de asfalto para pitbikes`;
     description = `Descubre los mejores circuitos de pitbike de asfalto en la provincia de ${provinceName}. Información completa sobre pistas para rodar en pitbike. ¡Encuentra tu circuito más cercano!`;
+  }
+
+  if (!provinceName && regionName) {
+    title = `Circuitos de Pitbike en ${regionName} - encuentra circuitos de asfalto para pitbikes`;
+    description = `Descubre los mejores circuitos de pitbike de asfalto en la provincia de ${regionName}. Información completa sobre pistas para rodar en pitbike. ¡Encuentra tu circuito más cercano!`;
   }
 
   return {
@@ -43,9 +50,9 @@ export default async function CircuitsPage({
   searchParams,
 }: CircuitsPageProps) {
   const urlSearchParams = new URLSearchParams(searchParams);
-  const circuitName = urlSearchParams.get("nombre") ?? undefined;
-  const provinceName = urlSearchParams.get("provincia") ?? "";
-  const regionName = urlSearchParams.get("region") ?? "";
+  const circuitName = urlSearchParams.get(CircuitSearchParams.name) ?? undefined;
+  const provinceName = urlSearchParams.get(CircuitSearchParams.province) ?? "";
+  const regionName = urlSearchParams.get(CircuitSearchParams.region) ?? "";
 
   const provinces = await findProvinces();
   const regions = await findRegions();
