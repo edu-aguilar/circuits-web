@@ -33,6 +33,7 @@ export class ProvinceRepository {
       id: provinceApi._id,
       name: provinceApi.name,
       urlName: removeAccents(provinceApi.name),
+      regionId: provinceApi.regionId,
     }));
   }
 }

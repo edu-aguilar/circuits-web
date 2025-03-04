@@ -3,21 +3,22 @@
 import { SearchInput } from "@/app/common/ui/components/SearchInput";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
+import { CircuitSearchParams } from "../CircuitSearchParams";
 
 export const CircuitSearchInput = () => {
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const { replace } = useRouter();
 
-  const circuitName = searchParams.get("nombre")?.toString();
+  const circuitName = searchParams.get(CircuitSearchParams.name)?.toString();
 
   const handleSearch = useDebouncedCallback((value: string) => {
     const params = new URLSearchParams(searchParams);
 
     if (value) {
-      params.set("nombre", value);
+      params.set(CircuitSearchParams.name, value);
     } else {
-      params.delete("nombre");
+      params.delete(CircuitSearchParams.name);
     }
     replace(`${pathName}?${params.toString()}`);
   }, 400);

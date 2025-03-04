@@ -11,6 +11,7 @@ export const CircuitList = async ({ filters }: CircuitListProps) => {
   const circuits = await findCircuits({
     name: filters.name,
     provinceId: filters.provinceId,
+    regionId: filters.regionId,
   });
 
   return (
