@@ -1,6 +1,6 @@
 "use client";
 
-import { Region } from "@/app/common/domain/types/Region";
+import { RegionData } from "@/app/common/domain/types/Region";
 import { Selector } from "@/app/common/ui/components/Selector";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -9,8 +9,8 @@ import { CircuitSearchParams } from "../CircuitSearchParams";
 import { getRegionSlug } from "@/app/circuits/utils/locationSlugs";
 
 interface CircuitRegionSelectorProps {
-  regions: Region[];
-  currentRegion?: Region;
+  regions: RegionData[];
+  currentRegion?: RegionData;
 }
 
 export const CircuitRegionSelector = ({ regions, currentRegion }: CircuitRegionSelectorProps) => {
@@ -18,7 +18,7 @@ export const CircuitRegionSelector = ({ regions, currentRegion }: CircuitRegionS
   const pathName = usePathname();
   const { replace } = useRouter();
 
-  const [selectedRegion, setSelectedRegion] = useState<Region | null>(currentRegion ?? null);
+  const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(currentRegion ?? null);
 
   const handleRegionChange = (value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -27,7 +27,7 @@ export const CircuitRegionSelector = ({ regions, currentRegion }: CircuitRegionS
     params.delete(CircuitSearchParams.province);
 
     if (value !== "0") {
-      const selectedRegion = Region.findRegionBy("id", value, regions);
+      const selectedRegion = regions.find((r) => r.id === value);
       if (selectedRegion) {
         setSelectedRegion(selectedRegion);
         const regionSlug = getRegionSlug(selectedRegion);

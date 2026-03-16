@@ -1,28 +1,24 @@
 "use client";
 
-import { Province } from "@/app/common/domain/types/Province";
+import { ProvinceData } from "@/app/common/domain/types/Province";
 import { CircuitProvinceSelector } from "./CircuitProvinceSelector";
 import { CircuitSearchInput } from "./CircuitSearchInput";
-import { Region } from "@/app/common/domain/types/Region";
+import { RegionData } from "@/app/common/domain/types/Region";
 import { CircuitRegionSelector } from "./CircuitRegionSelector";
 
 interface CircuitFiltersProps {
-  provinces: Province[];
-  currentProvince?: Province;
-  regions: Region[];
-  currentRegion?: Region;
+  provinces: ProvinceData[];
+  currentProvince?: ProvinceData;
+  regions: RegionData[];
+  currentRegion?: RegionData;
 }
 
 export const CircuitFilters = ({ provinces, currentProvince, regions, currentRegion }: CircuitFiltersProps) => {
-  const provincesFromRegion = currentRegion
-    ? provinces.filter((province) => province.regionId === currentRegion.id)
-    : provinces;
-
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <CircuitRegionSelector regions={regions} currentRegion={currentRegion} />
       <CircuitProvinceSelector
-        provinces={provincesFromRegion}
+        provinces={provinces}
         currentProvince={currentProvince}
         regions={regions}
         currentRegion={currentRegion}

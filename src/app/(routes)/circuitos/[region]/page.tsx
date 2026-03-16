@@ -6,10 +6,8 @@ import { AppPage } from "@/app/common/ui/components/AppPage";
 import { CircuitFilters } from "@/app/circuits/ui/components/CircuitFilters";
 import { CircuitList } from "@/app/circuits/ui/components/CircuitList";
 import { CircuitCardSkeleton } from "@/app/circuits/ui/components/CircuitCardSkeleton";
-import { findRegions } from "@/app/common/ui/actions/findRegions";
-import { findProvinces } from "@/app/common/ui/actions/findProvinces";
 import { findCircuits } from "@/app/circuits/ui/actions/findCircuits";
-import { findRegionBySlug, getProvinceSlug, getRegionSlug } from "@/app/circuits/utils/locationSlugs";
+import { findRegionBySlug, findProvinceByRegionId, circuitRegions } from "@/lib/circuits-data";
 import { permanentRedirect } from "next/navigation";
 
 type RegionPageProps = {
@@ -22,8 +20,7 @@ type RegionPageProps = {
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params, searchParams }: RegionPageProps): Promise<Metadata> {
-  const regions = await findRegions();
-  const currentRegion = findRegionBySlug(regions, params.region);
+  const currentRegion = findRegionBySlug(params.region);
   if (!currentRegion) {
     return { title: "Region no encontrada" };
   }
@@ -42,9 +39,7 @@ export async function generateMetadata({ params, searchParams }: RegionPageProps
 }
 
 export default async function CircuitRegionPage({ params, searchParams }: RegionPageProps) {
-  const regions = await findRegions();
-  const provinces = await findProvinces();
-  const currentRegion = findRegionBySlug(regions, params.region);
+  const currentRegion = findRegionBySlug(params.region);
 
   if (!currentRegion) {
     const circuits = await findCircuits({ nameUrl: params.region });
@@ -54,10 +49,9 @@ export default async function CircuitRegionPage({ params, searchParams }: Region
     notFound();
   }
 
-  const regionSlug = getRegionSlug(currentRegion);
-  const provincesForRegion = provinces
-    .filter((province) => province.regionId === currentRegion.id)
-    .sort((a, b) => a.name.localeCompare(b.name, "es"));
+  const provincesForRegion = findProvinceByRegionId(currentRegion.id).sort((a, b) =>
+    a.name.localeCompare(b.name, "es"),
+  );
 
   const circuitName = searchParams?.nombre ?? undefined;
 
@@ -74,10 +68,10 @@ export default async function CircuitRegionPage({ params, searchParams }: Region
 
       <section className="mt-6 rounded-2xl border border-black/10 bg-white p-4 md:p-6">
         <CircuitFilters
-          provinces={provinces}
+          provinces={provincesForRegion}
           currentProvince={undefined}
-          regions={regions}
-          currentRegion={currentRegion}
+          regions={circuitRegions}
+          currentRegion={circuitRegions.find((r) => r.id === currentRegion?.id)}
         />
       </section>
 
@@ -90,7 +84,7 @@ export default async function CircuitRegionPage({ params, searchParams }: Region
           {provincesForRegion.map((province) => (
             <Link
               key={province.id}
-              href={`/circuitos/${regionSlug}/${getProvinceSlug(province)}`}
+              href={`/circuitos/${currentRegion.urlName}/${province.urlName}`}
               className="rounded-full border border-black/10 px-3 py-1 text-xs text-black/60 hover:border-black/20"
             >
               {province.name}

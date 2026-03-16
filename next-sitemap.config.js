@@ -1,14 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const slugifyLocation = (value) =>
-  value
-    .normalize("NFD")
-    .replace(/\p{Diacritic}/gu, "")
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+const { regions, provinces } = require("./src/lib/circuits-locations.js");
 
 const readAppRoutes = (excluded = []) => {
   const manifestPath = path.join(__dirname, ".next", "app-path-routes-manifest.json");
@@ -41,24 +34,15 @@ const readModelSlugs = (blockName) => {
 };
 
 const readRegionProvinceUrls = () => {
-  const regionsPath = path.join(__dirname, "circuits-api.regions.json");
-  const provincesPath = path.join(__dirname, "circuits-api.provinces.json");
-  if (!fs.existsSync(regionsPath) || !fs.existsSync(provincesPath)) {
-    return { regionUrls: [], provinceUrls: [] };
-  }
-  const regions = JSON.parse(fs.readFileSync(regionsPath, "utf8"));
-  const provinces = JSON.parse(fs.readFileSync(provincesPath, "utf8"));
-  const regionSlugById = new Map(
-    regions.map((region) => [region._id.$oid, slugifyLocation(region.name)]),
-  );
-  const regionUrls = regions.map((region) => `/circuitos/${slugifyLocation(region.name)}`);
+  const regionSlugById = new Map(regions.map((region) => [region.id, region.slug]));
+  const regionUrls = regions.map((region) => `/circuitos/${region.slug}`);
   const provinceUrls = provinces
     .map((province) => {
       const regionSlug = regionSlugById.get(province.regionId);
       if (!regionSlug) {
         return null;
       }
-      return `/circuitos/${regionSlug}/${slugifyLocation(province.name)}`;
+      return `/circuitos/${regionSlug}/${province.slug}`;
     })
     .filter(Boolean);
 

@@ -1,19 +1,19 @@
 "use client";
 
-import { Province } from "@/app/common/domain/types/Province";
+import { ProvinceData } from "@/app/common/domain/types/Province";
 import { Selector } from "@/app/common/ui/components/Selector";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CircuitSearchParams } from "../CircuitSearchParams";
-import { Region } from "@/app/common/domain/types/Region";
+import { RegionData } from "@/app/common/domain/types/Region";
 import { getProvinceSlug, getRegionSlug } from "@/app/circuits/utils/locationSlugs";
 
 interface CircuitProvinceSelectorProps {
-  provinces: Province[];
-  currentProvince?: Province;
-  regions: Region[];
-  currentRegion?: Region;
+  provinces: ProvinceData[];
+  currentProvince?: ProvinceData;
+  regions: RegionData[];
+  currentRegion?: RegionData;
 }
 
 export const CircuitProvinceSelector = ({
@@ -26,7 +26,7 @@ export const CircuitProvinceSelector = ({
   const pathName = usePathname();
   const { replace } = useRouter();
 
-  const [selectedProvince, setSelectedProvince] = useState<Province | null>(currentProvince ?? null);
+  const [selectedProvince, setSelectedProvince] = useState<ProvinceData | null>(currentProvince ?? null);
 
   const handleProvinceChange = (value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -35,10 +35,10 @@ export const CircuitProvinceSelector = ({
     params.delete(CircuitSearchParams.region);
 
     if (value !== "0") {
-      const selectedProvince = Province.findProvinceBy("id", value, provinces);
+      const selectedProvince = provinces.find((p) => p.id === value);
       if (selectedProvince) {
         setSelectedProvince(selectedProvince);
-        const region = Region.findRegionBy("id", selectedProvince.regionId, regions);
+        const region = regions.find((r) => r.id === selectedProvince.regionId);
         const regionSlug = region ? getRegionSlug(region) : "";
         const provinceSlug = getProvinceSlug(selectedProvince);
         if (circuitName) {

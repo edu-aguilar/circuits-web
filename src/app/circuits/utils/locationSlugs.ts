@@ -1,6 +1,6 @@
 import { removeAccents } from "@/app/utils/removeAccents";
-import { Province } from "@/app/common/domain/types/Province";
-import { Region } from "@/app/common/domain/types/Region";
+import { ProvinceData } from "@/app/common/domain/types/Province";
+import { RegionData } from "@/app/common/domain/types/Region";
 
 export const slugifyLocation = (value: string) => {
   return removeAccents(value)
@@ -10,17 +10,17 @@ export const slugifyLocation = (value: string) => {
     .replace(/(^-|-$)/g, "");
 };
 
-export const getRegionSlug = (region: Region) => slugifyLocation(region.name);
+export const getRegionSlug = (region: RegionData) => slugifyLocation(region.name);
 
-export const getProvinceSlug = (province: Province) => slugifyLocation(province.name);
+export const getProvinceSlug = (province: ProvinceData) => slugifyLocation(province.name);
 
-export const findRegionBySlug = (regions: Region[], slug: string) =>
+export const findRegionBySlug = (regions: RegionData[], slug: string) =>
   regions.find((region) => getRegionSlug(region) === slug);
 
-export const findProvinceBySlug = (provinces: Province[], slug: string) =>
+export const findProvinceBySlug = (provinces: ProvinceData[], slug: string) =>
   provinces.find((province) => getProvinceSlug(province) === slug);
 
-export const groupProvincesByRegion = (regions: Region[], provinces: Province[]) => {
+export const groupProvincesByRegion = (regions: RegionData[], provinces: ProvinceData[]) => {
   return regions
     .map((region) => {
       const regionSlug = getRegionSlug(region);
