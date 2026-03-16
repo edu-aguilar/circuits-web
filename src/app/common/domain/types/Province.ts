@@ -5,6 +5,13 @@ interface ProvinceConstructor {
   regionId: string;
 }
 
+export type ProvinceData = {
+  id: string;
+  name: string;
+  urlName: string;
+  regionId: string;
+};
+
 export class Province {
   readonly id;
   readonly name;

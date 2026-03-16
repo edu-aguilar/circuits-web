@@ -10,17 +10,22 @@ type CircuitPageProps = {
   params: { name: string };
 };
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }: CircuitPageProps): Promise<Metadata> {
   const circuit = await findCircuit({
     nameUrl: params.name,
   });
 
-  const title = `Circuito para pitbikes ${circuit.name} - Información, Horarios y Ubicación para Pitbikes`;
-  const description = `Descubre todo sobre ${circuit.name}. Información completa sobre horarios, tarifas, ubicación, y detalles técnicos para rodar con tu pitbike en asfalto. ¡Encuentra tu próximo desafío!`;
+  const title = `Circuito para pitbikes ${circuit.name} - Informacion, horarios y ubicacion`;
+  const description = `Descubre todo sobre ${circuit.name}. Informacion completa sobre horarios, tarifas, ubicacion y detalles tecnicos para rodar con tu pitbike de asfalto.`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: `/circuitos/pista/${params.name}`,
+    },
   };
 }
 

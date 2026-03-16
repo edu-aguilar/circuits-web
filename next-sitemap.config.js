@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
 
+const { regions, provinces } = require("./src/lib/circuits-locations.js");
+
 const readAppRoutes = (excluded = []) => {
   const manifestPath = path.join(__dirname, ".next", "app-path-routes-manifest.json");
   if (!fs.existsSync(manifestPath)) {
@@ -29,6 +31,22 @@ const readModelSlugs = (blockName) => {
     slugs.push(match[1]);
   }
   return slugs;
+};
+
+const readRegionProvinceUrls = () => {
+  const regionSlugById = new Map(regions.map((region) => [region.id, region.slug]));
+  const regionUrls = regions.map((region) => `/circuitos/${region.slug}`);
+  const provinceUrls = provinces
+    .map((province) => {
+      const regionSlug = regionSlugById.get(province.regionId);
+      if (!regionSlug) {
+        return null;
+      }
+      return `/circuitos/${regionSlug}/${province.slug}`;
+    })
+    .filter(Boolean);
+
+  return { regionUrls, provinceUrls };
 };
 
 /** @type {import('next-sitemap').IConfig} */
@@ -63,15 +81,18 @@ module.exports = {
     const imrSlugs = readModelSlugs("imrModels");
     const malcorSlugs = readModelSlugs("malcorModels");
     const sharkSlugs = readModelSlugs("sharkModels");
+    const { regionUrls, provinceUrls } = readRegionProvinceUrls();
 
-    const circuitRoutes = circuits.data.map((circuit) => `/circuitos/${circuit.nameUrl}`);
+    const circuitRoutes = circuits.data.map((circuit) => `/circuitos/pista/${circuit.nameUrl}`);
     const motoRoutes = [
       ...imrSlugs.map((slug) => `/motos/imr/${slug}`),
       ...malcorSlugs.map((slug) => `/motos/malcor/${slug}`),
       ...sharkSlugs.map((slug) => `/motos/shark/${slug}`),
     ];
 
-    const allRoutes = Array.from(new Set([...staticRoutes, ...circuitRoutes, ...motoRoutes]));
+    const allRoutes = Array.from(
+      new Set([...staticRoutes, ...circuitRoutes, ...regionUrls, ...provinceUrls, ...motoRoutes]),
+    );
     const entries = await Promise.all(allRoutes.map((route) => config.transform(config, route)));
     return entries.filter(Boolean);
   },

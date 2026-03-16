@@ -9,7 +9,9 @@ import { findRegions } from "@/app/common/ui/actions/findRegions";
 import { AppPage } from "@/app/common/ui/components/AppPage";
 import { ReportComponent } from "@/app/common/ui/components/ReportComponent";
 import { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
+import { groupProvincesByRegion } from "@/app/circuits/utils/locationSlugs";
 
 type CircuitsPageProps = {
   searchParams?: {
@@ -20,8 +22,10 @@ type CircuitsPageProps = {
 
 export async function generateMetadata({ searchParams }: CircuitsPageProps): Promise<Metadata> {
   const urlSearchParams = new URLSearchParams(searchParams);
+  const circuitName = urlSearchParams.get(CircuitSearchParams.name) ?? "";
   const provinceName = urlSearchParams.get(CircuitSearchParams.province) ?? "";
   const regionName = urlSearchParams.get(CircuitSearchParams.region) ?? "";
+  const hasFilters = Boolean(circuitName || provinceName || regionName);
 
   let title = "Circuitos de Pitbike en España - encuentra pistas por provincia y nombre";
   let description =
@@ -40,6 +44,10 @@ export async function generateMetadata({ searchParams }: CircuitsPageProps): Pro
   return {
     title,
     description,
+    alternates: {
+      canonical: "/circuitos",
+    },
+    robots: hasFilters ? { index: false, follow: true } : undefined,
   };
 }
 
@@ -53,6 +61,7 @@ export default async function CircuitsPage({ searchParams }: CircuitsPageProps) 
   const regions = await findRegions();
   const currentProvince = Province.findProvinceBy("urlName", provinceName, provinces);
   const currentRegion = Region.findRegionBy("urlName", regionName, regions);
+  const regionsWithProvinces = groupProvincesByRegion(regions, provinces);
 
   return (
     <AppPage>
@@ -62,8 +71,8 @@ export default async function CircuitsPage({ searchParams }: CircuitsPageProps) 
             <p className="text-xs uppercase tracking-[0.25em] text-black/50">Catalogo nacional</p>
             <h1 className="mt-4 text-4xl text-black md:text-5xl">Circuitos de pitbike en Espana</h1>
             <p className="mt-3 max-w-2xl text-sm text-black/60 md:text-base">
-              Descubre pistas de asfalto por region, provincia o nombre. Cada ficha incluye ubicacion, tarifas y
-              detalles tecnicos.
+              Descubre pistas de pitbike de asfalto por region, provincia o nombre. Cada ficha incluye ubicacion,
+              tarifas y detalles tecnicos.
             </p>
           </div>
           <ReportComponent title="Falta un circuito" url="https://forms.gle/6KwW4BNpQ1DnZ6AM6" />
@@ -75,6 +84,34 @@ export default async function CircuitsPage({ searchParams }: CircuitsPageProps) 
             regions={regions}
             currentRegion={currentRegion}
           />
+        </div>
+      </section>
+
+      <section className="mb-10 rounded-2xl border border-black/10 bg-white p-6 md:p-8">
+        <h2 className="text-2xl text-black">Circuitos de pitbike de asfalto por region y provincia</h2>
+        <p className="mt-2 text-sm text-black/60">
+          Accede directamente a los listados locales para encontrar circuitos cerca de ti y planificar tus tandas de
+          pitbike de asfalto.
+        </p>
+        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          {regionsWithProvinces.map(({ region, slug, provinces: provinceEntries }) => (
+            <div key={region.id} className="rounded-2xl border border-black/10 bg-white p-5">
+              <Link href={`/circuitos/${slug}`} className="text-lg text-black hover:text-black/80">
+                {region.name}
+              </Link>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {provinceEntries.map(({ province, slug: provinceSlug }) => (
+                  <Link
+                    key={province.id}
+                    href={`/circuitos/${slug}/${provinceSlug}`}
+                    className="rounded-full border border-black/10 px-3 py-1 text-xs text-black/60 hover:border-black/20"
+                  >
+                    {province.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

@@ -4,6 +4,12 @@ interface RegionConstructor {
   urlName: string;
 }
 
+export type RegionData = {
+  id: string;
+  name: string;
+  urlName: string;
+};
+
 export class Region {
   readonly id;
   readonly name;
