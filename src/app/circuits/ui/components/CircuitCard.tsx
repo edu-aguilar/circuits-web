@@ -9,21 +9,20 @@ interface CircuitCardProps {
 export const CircuitCard = ({ circuit }: CircuitCardProps) => {
   return (
     <Link href={`/circuitos/${circuit.nameUrl}`}>
-      <div className="w-[280px] bg-white border border-gray-200 rounded-lg shadow">
-        <div className="w-full h-[200px] relative rounded-t-lg overflow-hidden flex justify-center items-center bg-gray-100">
+      <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/10 bg-white transition hover:border-black/20">
+        <div className="relative h-[200px] w-full overflow-hidden bg-black/5">
           <Image
-            className="object-contain w-full h-full"
+            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
             src={circuit.images[0]}
             width={240}
             height={200}
             alt={circuit.name}
           />
         </div>
-        <div className="p-5">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 min-h-16 line-clamp-2 text-ellipsis">
-            {circuit.name}
-          </h5>
-          <p className="mb-3 font-normal text-gray-700 line-clamp-2">{circuit.address}</p>
+        <div className="flex h-full flex-col gap-3 p-5">
+          <h3 className="min-h-16 text-2xl tracking-tight text-black line-clamp-2">{circuit.name}</h3>
+          <p className="text-sm text-black/60 line-clamp-2">{circuit.address}</p>
+          <div className="mt-auto text-xs text-black/50">Ver detalles</div>
         </div>
       </div>
     </Link>

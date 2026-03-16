@@ -56,28 +56,43 @@ export default async function CircuitsPage({ searchParams }: CircuitsPageProps) 
 
   return (
     <AppPage>
-      <>
-        <div className="flex gap-6 relative items-center">
+      <section className="mb-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.25em] text-black/50">Catalogo nacional</p>
+            <h1 className="mt-4 text-4xl text-black md:text-5xl">Circuitos de pitbike en Espana</h1>
+            <p className="mt-3 max-w-2xl text-sm text-black/60 md:text-base">
+              Descubre pistas de asfalto por region, provincia o nombre. Cada ficha incluye ubicacion, tarifas y
+              detalles tecnicos.
+            </p>
+          </div>
+          <ReportComponent title="Falta un circuito" url="https://forms.gle/6KwW4BNpQ1DnZ6AM6" />
+        </div>
+        <div className="mt-6 rounded-2xl border border-black/10 bg-white p-4 md:p-6">
           <CircuitFilters
             provinces={provinces}
             currentProvince={currentProvince}
             regions={regions}
             currentRegion={currentRegion}
           />
-          <ReportComponent title="¿Falta algún circuito? Añádelo!" url="https://forms.gle/6KwW4BNpQ1DnZ6AM6" />
         </div>
-        <div className="flex flex-wrap gap-6 justify-center lg:justify-start mt-8">
-          <Suspense fallback={Array(6).fill(<CircuitCardSkeleton />)}>
-            <CircuitList
-              filters={{
-                name: circuitName,
-                provinceId: currentProvince?.id,
-                regionId: currentRegion?.id,
-              }}
-            ></CircuitList>
-          </Suspense>
-        </div>
-      </>
+      </section>
+
+      <section className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <Suspense
+          fallback={Array.from({ length: 6 }, (_, index) => (
+            <CircuitCardSkeleton key={`skeleton-${index}`} />
+          ))}
+        >
+          <CircuitList
+            filters={{
+              name: circuitName,
+              provinceId: currentProvince?.id,
+              regionId: currentRegion?.id,
+            }}
+          ></CircuitList>
+        </Suspense>
+      </section>
     </AppPage>
   );
 }

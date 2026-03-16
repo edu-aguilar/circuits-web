@@ -3,5 +3,5 @@ export const AppPage = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  return <div className="p-6 md:p-10 max-w-5xl m-auto">{children}</div>;
+  return <div className="relative w-full px-6 py-10 md:px-10 md:py-14 max-w-6xl m-auto">{children}</div>;
 };

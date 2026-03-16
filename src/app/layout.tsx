@@ -1,7 +1,7 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
 import "./globals.css";
-import { inter } from "./fonts";
+import { body, display } from "./fonts";
 import { GoogleAnalytics } from "./common/ui/components/GoogleAnalytics";
 import { Suspense } from "react";
 import { AdSense } from "./common/ui/components/AdSense";
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon-16x16.png" sizes="16x16" />
@@ -33,7 +33,7 @@ export default function RootLayout({
         <meta name="google-adsense-account" content="ca-pub-6477691629525796" />
         <AdSense pid="pub-6477691629525796" />
       </head>
-      <body className={`${inter.className} antialiased flex flex-col min-h-screen	`}>
+      <body className={`${display.variable} ${body.variable} antialiased flex flex-col min-h-screen`}>
         <Header />
         <main className="grow">{children}</main>
       </body>
