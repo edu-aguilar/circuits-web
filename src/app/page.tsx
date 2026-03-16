@@ -17,9 +17,7 @@ export default function Home() {
             ></Image>
             <div className="text-center p-6 flex flex-col justify-center">
               <h1 className="text-3xl">Circuitos</h1>
-              <h2 className="text-xl">
-                Busca el circuito más cercano donde poder ir con tu pitbike
-              </h2>
+              <h2 className="text-xl">Busca el circuito más cercano donde poder ir con tu pitbike</h2>
             </div>
           </section>
         </Link>
