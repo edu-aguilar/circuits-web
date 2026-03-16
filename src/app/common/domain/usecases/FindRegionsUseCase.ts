@@ -3,7 +3,7 @@ import { Region } from "../types/Region";
 import { RegionRepository } from "../types/RegionRepository";
 import { RegionRepository as RegionRepositoryImplementation } from "../../infra/repositories/RegionRepository";
 
-export class FindRegionsUseCase implements UseCase<{}, Region[]> {
+export class FindRegionsUseCase implements UseCase<void, Region[]> {
   private readonly regionRepository: RegionRepository;
 
   constructor(provinceRepository = new RegionRepositoryImplementation()) {

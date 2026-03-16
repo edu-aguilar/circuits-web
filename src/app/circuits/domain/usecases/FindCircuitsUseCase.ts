@@ -4,9 +4,7 @@ import { CircuitsRepository } from "../types/CircuitsRepository";
 import { CircuitsRepository as CircuitsRepositoryImplementation } from "../../infra/CircuitsRepository";
 import { CircuitFilterQuery } from "../types/CircuitFilterQuery";
 
-export class FindCircuitsUseCase
-  implements UseCase<CircuitFilterQuery, Circuit[]>
-{
+export class FindCircuitsUseCase implements UseCase<CircuitFilterQuery, Circuit[]> {
   private readonly circuitsRepository: CircuitsRepository;
 
   constructor(circuitsRepository = new CircuitsRepositoryImplementation()) {

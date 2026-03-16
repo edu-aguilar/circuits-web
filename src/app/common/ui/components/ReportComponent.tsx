@@ -5,10 +5,7 @@ interface ReportComponentProps {
   title?: string;
 }
 
-export const ReportComponent = ({
-  url,
-  title = "Reportar error",
-}: ReportComponentProps) => {
+export const ReportComponent = ({ url, title = "Reportar error" }: ReportComponentProps) => {
   return (
     <div className="fixed left-4 bottom-4 z-10 sm:top-0 sm:right-0 sm:relative sm:left-auto">
       <button

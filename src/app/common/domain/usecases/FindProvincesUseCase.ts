@@ -3,7 +3,7 @@ import { Province } from "../types/Province";
 import { ProvinceRepository } from "../types/ProvinceRepository";
 import { ProvinceRepository as ProvinceRepositoryImplementation } from "../../infra/repositories/ProvinceRepository";
 
-export class FindProvincesUseCase implements UseCase<{}, Province[]> {
+export class FindProvincesUseCase implements UseCase<void, Province[]> {
   private readonly provinceRepository: ProvinceRepository;
 
   constructor(provinceRepository = new ProvinceRepositoryImplementation()) {

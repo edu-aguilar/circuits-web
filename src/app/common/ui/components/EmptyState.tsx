@@ -14,13 +14,7 @@ export const EmptyState = ({ title, description }: EmptyStateProps) => {
     <div className="w-full flex items-center flex-wrap justify-center gap-10">
       <div className="grid gap-4 w-80">
         <div className="w-20 h-20 mx-auto bg-gray-50 rounded-full shadow-sm justify-center items-center inline-flex">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="33"
-            height="32"
-            viewBox="0 0 33 32"
-            fill="none"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
             <g id="File Serch">
               <path
                 id="Vector"
@@ -34,16 +28,8 @@ export const EmptyState = ({ title, description }: EmptyStateProps) => {
           </svg>
         </div>
         <div>
-          {title && (
-            <h2 className="text-center text-black text-base font-semibold leading-relaxed pb-1">
-              {title}
-            </h2>
-          )}
-          {description && (
-            <p className="text-center text-black text-sm font-normal leading-snug pb-4">
-              {description}
-            </p>
-          )}
+          {title && <h2 className="text-center text-black text-base font-semibold leading-relaxed pb-1">{title}</h2>}
+          {description && <p className="text-center text-black text-sm font-normal leading-snug pb-4">{description}</p>}
 
           <div className="flex gap-3">
             <button
