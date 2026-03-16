@@ -6,6 +6,7 @@ import { useSearchParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CircuitSearchParams } from "../CircuitSearchParams";
+import { getRegionSlug } from "@/app/circuits/utils/locationSlugs";
 
 interface CircuitRegionSelectorProps {
   regions: Region[];
@@ -21,19 +22,34 @@ export const CircuitRegionSelector = ({ regions, currentRegion }: CircuitRegionS
 
   const handleRegionChange = (value: string) => {
     const params = new URLSearchParams(searchParams);
+    const circuitName = params.get(CircuitSearchParams.name);
+    params.delete(CircuitSearchParams.region);
+    params.delete(CircuitSearchParams.province);
 
     if (value !== "0") {
       const selectedRegion = Region.findRegionBy("id", value, regions);
       if (selectedRegion) {
         setSelectedRegion(selectedRegion);
-        params.delete(CircuitSearchParams.province);
-        params.set(CircuitSearchParams.region, selectedRegion.urlName);
+        const regionSlug = getRegionSlug(selectedRegion);
+        if (circuitName) {
+          params.set(CircuitSearchParams.name, circuitName);
+        } else {
+          params.delete(CircuitSearchParams.name);
+        }
+        replace(`/circuitos/${regionSlug}${params.toString() ? `?${params.toString()}` : ""}`);
+        return;
       }
     } else {
       setSelectedRegion(null);
-      params.delete(CircuitSearchParams.region);
+      if (circuitName) {
+        params.set(CircuitSearchParams.name, circuitName);
+      } else {
+        params.delete(CircuitSearchParams.name);
+      }
+      replace(`/circuitos${params.toString() ? `?${params.toString()}` : ""}`);
+      return;
     }
-    replace(`${pathName}?${params.toString()}`);
+    replace(pathName);
   };
 
   return (

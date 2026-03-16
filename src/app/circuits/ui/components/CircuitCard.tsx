@@ -8,7 +8,7 @@ interface CircuitCardProps {
 
 export const CircuitCard = ({ circuit }: CircuitCardProps) => {
   return (
-    <Link href={`/circuitos/${circuit.nameUrl}`}>
+    <Link href={`/circuitos/pista/${circuit.nameUrl}`}>
       <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-black/10 bg-white transition hover:border-black/20">
         <div className="relative h-[200px] w-full overflow-hidden bg-black/5">
           <Image

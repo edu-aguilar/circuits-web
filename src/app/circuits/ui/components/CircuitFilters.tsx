@@ -21,7 +21,12 @@ export const CircuitFilters = ({ provinces, currentProvince, regions, currentReg
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <CircuitRegionSelector regions={regions} currentRegion={currentRegion} />
-      <CircuitProvinceSelector provinces={provincesFromRegion} currentProvince={currentProvince} />
+      <CircuitProvinceSelector
+        provinces={provincesFromRegion}
+        currentProvince={currentProvince}
+        regions={regions}
+        currentRegion={currentRegion}
+      />
       <CircuitSearchInput />
     </div>
   );
