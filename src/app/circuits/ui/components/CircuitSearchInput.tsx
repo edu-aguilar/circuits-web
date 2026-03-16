@@ -24,7 +24,7 @@ export const CircuitSearchInput = () => {
   }, 400);
 
   return (
-    <div className="relative flex">
+    <div className="relative flex w-full">
       <SearchInput onChange={handleSearch} defaultValue={circuitName}></SearchInput>
     </div>
   );

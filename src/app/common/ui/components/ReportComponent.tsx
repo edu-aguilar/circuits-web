@@ -9,12 +9,11 @@ export const ReportComponent = ({ url, title = "Reportar error" }: ReportCompone
   return (
     <div className="fixed left-4 bottom-4 z-10 sm:top-0 sm:right-0 sm:relative sm:left-auto">
       <button
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-xs text-black/80 shadow-[var(--shadow-soft)] transition hover:border-black/20"
         onClick={() => {
           window.open(url, "_blank");
         }}
       >
-        {/* <span className="sm:hidden">!</span> */}
         <span>{title}</span>
       </button>
     </div>

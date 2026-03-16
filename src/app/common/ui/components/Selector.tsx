@@ -30,7 +30,7 @@ export function Selector<T extends Item>({
         onChange(event.target.value);
       }}
       defaultValue={defaultValue}
-      className="block p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+      className="block w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black/80 transition focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-[rgba(0,0,0,0.08)]"
     >
       <option value="0">{anyValueLabel}</option>
       {items.map((item) => (

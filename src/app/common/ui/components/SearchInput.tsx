@@ -8,14 +8,14 @@ interface SearchInputProps {
 export const SearchInput = ({
   defaultValue = "",
   minChars = 2,
-  placeholder = "buscar",
+  placeholder = "Buscar circuito",
   onChange,
 }: SearchInputProps) => {
   return (
     <div className="relative w-full">
-      <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+      <div className="absolute inset-y-0 start-0 flex items-center ps-4 pointer-events-none">
         <svg
-          className="w-4 h-4 text-gray-500"
+          className="h-4 w-4 text-black/40"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -33,7 +33,7 @@ export const SearchInput = ({
       <input
         type="search"
         id="search"
-        className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+        className="block w-full rounded-xl border border-black/10 bg-white px-4 py-3 ps-11 text-sm text-black/80 transition focus:border-black/20 focus:outline-none focus:ring-2 focus:ring-[rgba(0,0,0,0.08)]"
         placeholder={placeholder}
         onChange={(event) => {
           const value = event.target.value;

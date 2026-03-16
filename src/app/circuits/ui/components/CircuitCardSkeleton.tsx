@@ -1,13 +1,14 @@
 export const CircuitCardSkeleton = () => {
   return (
-    <div className="w-[280px] bg-white border border-gray-200 rounded-lg shadow">
-      <div className="w-full h-[200px] relative rounded-t-lg overflow-hidden flex justify-center items-center bg-gray-100 animate-pulse">
-        <div className="w-full h-full bg-gray-300"></div>
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-black/10 bg-white">
+      <div className="relative h-[200px] w-full overflow-hidden bg-black/5">
+        <div className="h-full w-full animate-pulse bg-black/10"></div>
       </div>
-      <div className="p-5">
-        <div className="mb-2 h-6 bg-gray-300 rounded w-3/4 animate-pulse"></div>
-        <div className="h-4 bg-gray-300 rounded w-full animate-pulse mb-2"></div>
-        <div className="h-4 bg-gray-300 rounded w-5/6 animate-pulse"></div>
+      <div className="flex h-full flex-col gap-3 p-5">
+        <div className="h-6 w-3/4 animate-pulse rounded bg-black/10"></div>
+        <div className="h-4 w-full animate-pulse rounded bg-black/10"></div>
+        <div className="h-4 w-5/6 animate-pulse rounded bg-black/10"></div>
+        <div className="mt-auto h-3 w-24 animate-pulse rounded bg-black/10"></div>
       </div>
     </div>
   );

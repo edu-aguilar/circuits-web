@@ -5,3 +5,43 @@
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --color-ink: #1c1b18;
+  --color-ink-soft: #3b3832;
+  --color-sand: #f7f6f2;
+  --color-ember: #d5522a;
+  --color-ember-strong: #b54422;
+  --color-card: #ffffff;
+  --color-line: #ddd7cc;
+  --shadow-soft: 0 10px 24px rgba(28, 27, 24, 0.08);
+  --shadow-strong: 0 20px 46px rgba(28, 27, 24, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background-color: var(--color-sand);
+}
+
+main {
+  position: relative;
+  z-index: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
