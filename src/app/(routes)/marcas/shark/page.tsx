@@ -2,26 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { AppPage } from "@/app/common/ui/components/AppPage";
-import { imrModels } from "@/lib/motos-data";
+import { Breadcrumbs } from "@/app/common/ui/components/Breadcrumbs";
+import { routes } from "@/app/common/routes";
+import { sharkModels } from "@/lib/motos-data";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Motos IMR de asfalto - Modelos, precios y caracteristicas | todopitbike.es",
+  title: "Motos Shark de asfalto - Modelos GP12 y MT12 | todopitbike.es",
   description:
-    "Explora la gama de pitbikes IMR para asfalto: desde la Copa Alevin 90cc hasta los modelos GP20 y Race Pro de alta cilindrada. Compara caracteristicas, precios y encuentra tu moto ideal.",
+    "Descubre los modelos Shark para pitbike de asfalto: MiniGP GP12 y MT12 con enfoque racing. Conoce sus caracteristicas, componentes de alto nivel y precios.",
 };
 
-export default function ImrPage() {
+export default function SharkPage() {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Motos IMR de Asfalto",
+    name: "Motos Shark de Asalto",
     description:
-      "Gama completa de pitbikes IMR para asfalto: desde la Copa Alevin 90cc hasta los modelos GP20 y Race Pro de alta cilindrada.",
-    url: "https://todopitbike.es/motos/imr",
+      "Gama de pitbikes Shark para asfalto: MiniGP GP12 y MT12 con enfoque racing y componentes de alto nivel.",
+    url: routes.marcas.shark.url,
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: imrModels.map((model, index) => ({
+      itemListElement: sharkModels.map((model, index) => ({
         "@type": "ListItem",
         position: index + 1,
         item: {
@@ -29,7 +31,7 @@ export default function ImrPage() {
           name: model.name,
           description: model.summary,
           image: model.image,
-          url: `https://todopitbike.es/motos/imr/${model.slug}`,
+          url: routes.marcas.shark.model(model.slug).url,
           additionalProperty: [
             {
               "@type": "PropertyValue",
@@ -45,20 +47,25 @@ export default function ImrPage() {
   return (
     <>
       <Script
-        id="schema-imr"
+        id="schema-shark"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       <AppPage>
+        <Breadcrumbs
+          items={[
+            { label: "Marcas", href: routes.marcas.path },
+            { label: "Shark", href: routes.marcas.shark.path },
+          ]}
+        />
         <section className="rounded-2xl border border-black/10 bg-white p-8">
           <p className="text-xs uppercase tracking-[0.25em] text-black/50">Motos</p>
-          <h1 className="mt-3 text-4xl text-black">IMR</h1>
+          <h1 className="mt-3 text-4xl text-black">Shark</h1>
           <p className="mt-3 text-base text-black/60">
-            IMR (Industrias Mouricio Racing) es una marca española referente en el mundo de las pitbikes de asfalto. Con
-            una amplia gama que va desde los 90cc hasta los 300cc, IMR ofrece modelos para todos los niveles: desde la
-            Copa Alevin para los más pequeños, hasta las series Corse, Race Pro y GP20 para pilotos avanzados que buscan
-            rendimiento en circuito. La marca es conocida por su calidad de construcción y sus opciones personalizables
-            para competir.
+            Shark es una marca especializada en pitbikes de asfalto con un claro enfoque racing. Sus modelos, como la
+            MiniGP GP12 y la MT12, están diseñados para pilotos que buscan rendimiento puro en circuito. Shark destaca
+            por utilizar componentes de alta gama como chasis CrMo (cromo molibdeno), horquillas regulables, frenos
+            J.Juan y estriberas CNC, ofreciendo una experiencia de conducción similar a las motos de competición.
           </p>
         </section>
 
@@ -66,45 +73,44 @@ export default function ImrPage() {
           <div className="rounded-2xl border border-black/10 bg-white p-6">
             <h2 className="text-2xl text-black">Modelos destacados</h2>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-black/60">
-              <li>Copa Alevin 90</li>
-              <li>Corse 110R, 140 RR, 155 RR y 190 RR</li>
-              <li>Race Pro 155 y 190</li>
-              <li>GP20 160, 190 y 190 Daytona</li>
-              <li>GP20 LC 300</li>
+              <li>MiniGP GP12 con motor ZS190</li>
+              <li>Pitbike MT12 190cc</li>
             </ul>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl border border-black/10 bg-white p-4 text-sm text-black/60">
+                Chasis CrMo (cromo molibdeno)
+              </div>
+              <div className="rounded-xl border border-black/10 bg-white p-4 text-sm text-black/60">
+                Frenos J.Juan y horquillas regulables
+              </div>
+              <div className="rounded-xl border border-black/10 bg-white p-4 text-sm text-black/60">
+                Estriberas CNC y componentes racing
+              </div>
+            </div>
           </div>
           <div className="rounded-2xl border border-black/10 bg-white p-6">
             <div className="relative h-52 w-full overflow-hidden rounded-xl border border-black/10">
               <Image
-                src="https://impormotor.com/19445-home_default/pit-bike-imr-190-modelo-race-pro.jpg"
+                src="https://sharkminigp.com/wp-content/uploads/2024/04/MINIGP-SHARK-GP12-PRECIO.jpeg"
                 fill
                 sizes="(max-width: 1024px) 100vw, 420px"
                 className="object-cover"
-                alt="Pitbike IMR Race Pro"
+                alt="Shark MiniGP GP12"
               />
             </div>
             <p className="mt-4 text-sm text-black/60">
-              IMR ofrece lineas para iniciacion, evolucion y competicion, con diferentes alturas y configuraciones.
+              Modelos orientados a competicion con componentes de alto nivel y configuraciones de asfalto.
             </p>
           </div>
         </section>
 
-        <section className="mt-8 rounded-2xl border border-black/10 bg-white p-6">
-          <h2 className="text-2xl text-black">Que destaca en IMR</h2>
-          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-black/60">
-            <li>Amplia variedad de cilindradas y modelos.</li>
-            <li>Series Corse y Race Pro orientadas a asfalto.</li>
-            <li>Linea GP20 con opciones de alto rendimiento.</li>
-          </ul>
-        </section>
-
         <section className="mt-8">
-          <h2 className="text-2xl text-black">Modelos IMR</h2>
+          <h2 className="text-2xl text-black">Modelos Shark</h2>
           <div className="mt-4 grid gap-6 md:grid-cols-2">
-            {imrModels.map((model) => (
+            {sharkModels.map((model) => (
               <Link
                 key={model.slug}
-                href={`/motos/imr/${model.slug}`}
+                href={routes.marcas.shark.model(model.slug).path}
                 className="rounded-2xl border border-black/10 bg-white p-6 transition hover:border-black/20"
               >
                 <div className="relative h-40 w-full overflow-hidden rounded-xl border border-black/10">

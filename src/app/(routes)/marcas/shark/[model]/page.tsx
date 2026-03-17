@@ -2,6 +2,8 @@ import Image from "next/image";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AppPage } from "@/app/common/ui/components/AppPage";
+import { Breadcrumbs } from "@/app/common/ui/components/Breadcrumbs";
+import { routes } from "@/app/common/routes";
 import { sharkModels } from "@/lib/motos-data";
 
 type SharkModelPageProps = {
@@ -31,6 +33,13 @@ export default function SharkModelPage({ params }: SharkModelPageProps) {
 
   return (
     <AppPage>
+      <Breadcrumbs
+        items={[
+          { label: "Marcas", href: routes.marcas.path },
+          { label: "Shark", href: routes.marcas.shark.path },
+          { label: model.name, href: routes.marcas.shark.model(model.slug).path },
+        ]}
+      />
       <section className="rounded-2xl border border-black/10 bg-white p-8">
         <p className="text-xs uppercase tracking-[0.25em] text-black/50">Motos Shark</p>
         <h1 className="mt-3 text-4xl text-black">{model.name}</h1>

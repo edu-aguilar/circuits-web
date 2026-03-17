@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Suspense } from "react";
 import { AppPage } from "@/app/common/ui/components/AppPage";
+import { Breadcrumbs } from "@/app/common/ui/components/Breadcrumbs";
 import { CircuitFilters } from "@/app/circuits/ui/components/CircuitFilters";
 import { CircuitList } from "@/app/circuits/ui/components/CircuitList";
 import { CircuitCardSkeleton } from "@/app/circuits/ui/components/CircuitCardSkeleton";
@@ -56,6 +57,13 @@ export default async function CircuitProvincePage({ params, searchParams }: Prov
 
   return (
     <AppPage>
+      <Breadcrumbs
+        items={[
+          { label: "Circuitos", href: "/circuitos" },
+          { label: currentRegion.name, href: `/circuitos/${currentRegion.urlName}` },
+          { label: currentProvince.name, href: `/circuitos/${currentRegion.urlName}/${currentProvince.urlName}` },
+        ]}
+      />
       <section className="rounded-2xl border border-black/10 bg-white p-8">
         <p className="text-xs uppercase tracking-[0.25em] text-black/50">Circuitos por provincia</p>
         <h1 className="mt-3 text-4xl text-black">Circuitos de pitbike de asfalto en {currentProvince.name}</h1>

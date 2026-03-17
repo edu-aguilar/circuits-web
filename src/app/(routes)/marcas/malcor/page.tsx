@@ -2,26 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { AppPage } from "@/app/common/ui/components/AppPage";
-import { sharkModels } from "@/lib/motos-data";
+import { Breadcrumbs } from "@/app/common/ui/components/Breadcrumbs";
+import { routes } from "@/app/common/routes";
+import { malcorModels } from "@/lib/motos-data";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Motos Shark de asfalto - Modelos GP12 y MT12 | todopitbike.es",
+  title: "Motos Malcor de asfalto - Modelos, precios y caracteristicas | todopitbike.es",
   description:
-    "Descubre los modelos Shark para pitbike de asfalto: MiniGP GP12 y MT12 con enfoque racing. Conoce sus caracteristicas, componentes de alto nivel y precios.",
+    "Descubre los modelos Malcor para pitbike de asfalto: Racer y Super Racer en 160 y 190cc. Compara caracteristicas, precios y opiniones. Encuentra la mejor opción para rodar en circuito.",
 };
 
-export default function SharkPage() {
+export default function MalcorPage() {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Motos Shark de Asalto",
+    name: "Motos Malcor de Asfalto",
     description:
-      "Gama de pitbikes Shark para asfalto: MiniGP GP12 y MT12 con enfoque racing y componentes de alto nivel.",
-    url: "https://todopitbike.es/motos/shark",
+      "Gama completa de pitbikes Malcor para asfalto: Racer y Super Racer en 160 y 190cc. Modelos con motores Z155 y ZS190, ideales para pilotos de todos los niveles.",
+    url: routes.marcas.malcor.url,
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: sharkModels.map((model, index) => ({
+      itemListElement: malcorModels.map((model, index) => ({
         "@type": "ListItem",
         position: index + 1,
         item: {
@@ -29,7 +31,7 @@ export default function SharkPage() {
           name: model.name,
           description: model.summary,
           image: model.image,
-          url: `https://todopitbike.es/motos/shark/${model.slug}`,
+          url: routes.marcas.malcor.model(model.slug).url,
           additionalProperty: [
             {
               "@type": "PropertyValue",
@@ -45,19 +47,26 @@ export default function SharkPage() {
   return (
     <>
       <Script
-        id="schema-shark"
+        id="schema-malcor"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       <AppPage>
+        <Breadcrumbs
+          items={[
+            { label: "Marcas", href: routes.marcas.path },
+            { label: "Malcor", href: routes.marcas.malcor.path },
+          ]}
+        />
         <section className="rounded-2xl border border-black/10 bg-white p-8">
           <p className="text-xs uppercase tracking-[0.25em] text-black/50">Motos</p>
-          <h1 className="mt-3 text-4xl text-black">Shark</h1>
+          <h1 className="mt-3 text-4xl text-black">Malcor</h1>
           <p className="mt-3 text-base text-black/60">
-            Shark es una marca especializada en pitbikes de asfalto con un claro enfoque racing. Sus modelos, como la
-            MiniGP GP12 y la MT12, están diseñados para pilotos que buscan rendimiento puro en circuito. Shark destaca
-            por utilizar componentes de alta gama como chasis CrMo (cromo molibdeno), horquillas regulables, frenos
-            J.Juan y estriberas CNC, ofreciendo una experiencia de conducción similar a las motos de competición.
+            Malcor es una de las marcas de referencia en pitbike de asfalto en España. Con una amplia gama que abarca
+            desde los 160cc hasta los 190cc, Malcor ofrece opciones tanto para pilotos que se inician en el mundo de las
+            pitbikes como para aquellos que buscan rendimiento en circuito. La marca destaca por sus modelos Racer y
+            Super Racer, equipados con motores Z155 y ZS190, ofreciendo una excelente relación calidad-precio para rodar
+            en asfalto.
           </p>
         </section>
 
@@ -65,44 +74,47 @@ export default function SharkPage() {
           <div className="rounded-2xl border border-black/10 bg-white p-6">
             <h2 className="text-2xl text-black">Modelos destacados</h2>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-black/60">
-              <li>MiniGP GP12 con motor ZS190</li>
-              <li>Pitbike MT12 190cc</li>
+              <li>Racer R 160</li>
+              <li>Racer R 190 Special Edition (motor ZS190)</li>
+              <li>Super Racer 160</li>
+              <li>Super Racer R 190</li>
+              <li>Super Racer SMR 160 (motor Z155)</li>
+              <li>Super Racer SMR 190</li>
             </ul>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl border border-black/10 bg-white p-4 text-sm text-black/60">
-                Chasis CrMo (cromo molibdeno)
-              </div>
-              <div className="rounded-xl border border-black/10 bg-white p-4 text-sm text-black/60">
-                Frenos J.Juan y horquillas regulables
-              </div>
-              <div className="rounded-xl border border-black/10 bg-white p-4 text-sm text-black/60">
-                Estriberas CNC y componentes racing
-              </div>
-            </div>
           </div>
           <div className="rounded-2xl border border-black/10 bg-white p-6">
             <div className="relative h-52 w-full overflow-hidden rounded-xl border border-black/10">
               <Image
-                src="https://sharkminigp.com/wp-content/uploads/2024/04/MINIGP-SHARK-GP12-PRECIO.jpeg"
+                src="/malcor-brand.jpg"
                 fill
                 sizes="(max-width: 1024px) 100vw, 420px"
                 className="object-cover"
-                alt="Shark MiniGP GP12"
+                alt="Pit motard Malcor"
               />
             </div>
             <p className="mt-4 text-sm text-black/60">
-              Modelos orientados a competicion con componentes de alto nivel y configuraciones de asfalto.
+              La gama Malcor en asfalto se centra en versiones Supermotard con diferentes configuraciones de motor y
+              componentes.
             </p>
           </div>
         </section>
 
+        <section className="mt-8 rounded-2xl border border-black/10 bg-white p-6">
+          <h2 className="text-2xl text-black">Que destaca en Malcor</h2>
+          <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-black/60">
+            <li>Opciones en 160cc y 190cc para distintos niveles.</li>
+            <li>Versiones SMR con enfoque en asfalto.</li>
+            <li>Configuraciones con motores Z155 y ZS190 segun modelo.</li>
+          </ul>
+        </section>
+
         <section className="mt-8">
-          <h2 className="text-2xl text-black">Modelos Shark</h2>
+          <h2 className="text-2xl text-black">Modelos Malcor</h2>
           <div className="mt-4 grid gap-6 md:grid-cols-2">
-            {sharkModels.map((model) => (
+            {malcorModels.map((model) => (
               <Link
                 key={model.slug}
-                href={`/motos/shark/${model.slug}`}
+                href={routes.marcas.malcor.model(model.slug).path}
                 className="rounded-2xl border border-black/10 bg-white p-6 transition hover:border-black/20"
               >
                 <div className="relative h-40 w-full overflow-hidden rounded-xl border border-black/10">

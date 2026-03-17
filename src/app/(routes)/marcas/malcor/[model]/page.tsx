@@ -2,6 +2,8 @@ import Image from "next/image";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AppPage } from "@/app/common/ui/components/AppPage";
+import { Breadcrumbs } from "@/app/common/ui/components/Breadcrumbs";
+import { routes } from "@/app/common/routes";
 import { malcorModels } from "@/lib/motos-data";
 
 type MalcorModelPageProps = {
@@ -31,6 +33,13 @@ export default function MalcorModelPage({ params }: MalcorModelPageProps) {
 
   return (
     <AppPage>
+      <Breadcrumbs
+        items={[
+          { label: "Marcas", href: routes.marcas.path },
+          { label: "Malcor", href: routes.marcas.malcor.path },
+          { label: model.name, href: routes.marcas.malcor.model(model.slug).path },
+        ]}
+      />
       <section className="rounded-2xl border border-black/10 bg-white p-8">
         <p className="text-xs uppercase tracking-[0.25em] text-black/50">Motos Malcor</p>
         <h1 className="mt-3 text-4xl text-black">{model.name}</h1>

@@ -111,7 +111,7 @@ export default function Home() {
         </div>
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           <Link
-            href={routes.motos.malcor}
+            href={routes.marcas.malcor.path}
             className="rounded-2xl border border-black/10 bg-white p-5 transition hover:border-black/20"
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
@@ -130,7 +130,7 @@ export default function Home() {
             <span className="mt-4 inline-flex text-xs text-black/50">Ver modelos Malcor</span>
           </Link>
           <Link
-            href={routes.motos.imr}
+            href={routes.marcas.imr.path}
             className="rounded-2xl border border-black/10 bg-white p-5 transition hover:border-black/20"
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
@@ -149,7 +149,7 @@ export default function Home() {
             <span className="mt-4 inline-flex text-xs text-black/50">Ver modelos IMR</span>
           </Link>
           <Link
-            href={routes.motos.shark}
+            href={routes.marcas.shark.path}
             className="rounded-2xl border border-black/10 bg-white p-5 transition hover:border-black/20"
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
@@ -180,7 +180,7 @@ export default function Home() {
         </div>
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           <Link
-            href={routes.motores.zs155}
+            href={routes.motores.zs155.path}
             className="rounded-2xl border border-black/10 bg-white p-5 transition hover:border-black/20"
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
@@ -197,7 +197,7 @@ export default function Home() {
             <span className="mt-4 inline-flex text-xs text-black/50">Ver ficha ZS155</span>
           </Link>
           <Link
-            href={routes.motores.zs190}
+            href={routes.motores.zs190.path}
             className="rounded-2xl border border-black/10 bg-white p-5 transition hover:border-black/20"
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
@@ -214,7 +214,7 @@ export default function Home() {
             <span className="mt-4 inline-flex text-xs text-black/50">Ver ficha ZS190</span>
           </Link>
           <Link
-            href={routes.motores.yx160}
+            href={routes.motores.yx160.path}
             className="rounded-2xl border border-black/10 bg-white p-5 transition hover:border-black/20"
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
@@ -231,7 +231,7 @@ export default function Home() {
             <span className="mt-4 inline-flex text-xs text-black/50">Ver ficha YX160</span>
           </Link>
           <Link
-            href={routes.motores.daytona190}
+            href={routes.motores.daytona190.path}
             className="rounded-2xl border border-black/10 bg-white p-5 transition hover:border-black/20"
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
@@ -248,7 +248,7 @@ export default function Home() {
             <span className="mt-4 inline-flex text-xs text-black/50">Ver ficha Daytona</span>
           </Link>
           <Link
-            href={routes.motores.zs212}
+            href={routes.motores.zs212.path}
             className="rounded-2xl border border-black/10 bg-white p-5 transition hover:border-black/20"
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">

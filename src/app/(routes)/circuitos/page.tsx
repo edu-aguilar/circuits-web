@@ -7,6 +7,7 @@ import { Region } from "@/app/common/domain/types/Region";
 import { findProvinces } from "@/app/common/ui/actions/findProvinces";
 import { findRegions } from "@/app/common/ui/actions/findRegions";
 import { AppPage } from "@/app/common/ui/components/AppPage";
+import { Breadcrumbs } from "@/app/common/ui/components/Breadcrumbs";
 import { ReportComponent } from "@/app/common/ui/components/ReportComponent";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -65,6 +66,7 @@ export default async function CircuitsPage({ searchParams }: CircuitsPageProps) 
 
   return (
     <AppPage>
+      <Breadcrumbs items={[{ label: "Circuitos", href: "/circuitos" }]} />
       <section className="mb-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
