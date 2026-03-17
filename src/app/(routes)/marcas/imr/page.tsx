@@ -2,26 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { AppPage } from "@/app/common/ui/components/AppPage";
-import { malcorModels } from "@/lib/motos-data";
+import { Breadcrumbs } from "@/app/common/ui/components/Breadcrumbs";
+import { routes } from "@/app/common/routes";
+import { imrModels } from "@/lib/motos-data";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Motos Malcor de asfalto - Modelos, precios y caracteristicas | todopitbike.es",
+  title: "Motos IMR de asfalto - Modelos, precios y caracteristicas | todopitbike.es",
   description:
-    "Descubre los modelos Malcor para pitbike de asfalto: Racer y Super Racer en 160 y 190cc. Compara caracteristicas, precios y opiniones. Encuentra la mejor opción para rodar en circuito.",
+    "Explora la gama de pitbikes IMR para asfalto: desde la Copa Alevin 90cc hasta los modelos GP20 y Race Pro de alta cilindrada. Compara caracteristicas, precios y encuentra tu moto ideal.",
 };
 
-export default function MalcorPage() {
+export default function ImrPage() {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Motos Malcor de Asfalto",
+    name: "Motos IMR de Asfalto",
     description:
-      "Gama completa de pitbikes Malcor para asfalto: Racer y Super Racer en 160 y 190cc. Modelos con motores Z155 y ZS190, ideales para pilotos de todos los niveles.",
-    url: "https://todopitbike.es/motos/malcor",
+      "Gama completa de pitbikes IMR para asfalto: desde la Copa Alevin 90cc hasta los modelos GP20 y Race Pro de alta cilindrada.",
+    url: routes.marcas.imr.url,
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: malcorModels.map((model, index) => ({
+      itemListElement: imrModels.map((model, index) => ({
         "@type": "ListItem",
         position: index + 1,
         item: {
@@ -29,7 +31,7 @@ export default function MalcorPage() {
           name: model.name,
           description: model.summary,
           image: model.image,
-          url: `https://todopitbike.es/motos/malcor/${model.slug}`,
+          url: routes.marcas.imr.model(model.slug).url,
           additionalProperty: [
             {
               "@type": "PropertyValue",
@@ -45,20 +47,26 @@ export default function MalcorPage() {
   return (
     <>
       <Script
-        id="schema-malcor"
+        id="schema-imr"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       <AppPage>
+        <Breadcrumbs
+          items={[
+            { label: "Marcas", href: routes.marcas.path },
+            { label: "IMR", href: routes.marcas.imr.path },
+          ]}
+        />
         <section className="rounded-2xl border border-black/10 bg-white p-8">
           <p className="text-xs uppercase tracking-[0.25em] text-black/50">Motos</p>
-          <h1 className="mt-3 text-4xl text-black">Malcor</h1>
+          <h1 className="mt-3 text-4xl text-black">IMR</h1>
           <p className="mt-3 text-base text-black/60">
-            Malcor es una de las marcas de referencia en pitbike de asfalto en España. Con una amplia gama que abarca
-            desde los 160cc hasta los 190cc, Malcor ofrece opciones tanto para pilotos que se inician en el mundo de las
-            pitbikes como para aquellos que buscan rendimiento en circuito. La marca destaca por sus modelos Racer y
-            Super Racer, equipados con motores Z155 y ZS190, ofreciendo una excelente relación calidad-precio para rodar
-            en asfalto.
+            IMR (Industrias Mouricio Racing) es una marca española referente en el mundo de las pitbikes de asfalto. Con
+            una amplia gama que va desde los 90cc hasta los 300cc, IMR ofrece modelos para todos los niveles: desde la
+            Copa Alevin para los más pequeños, hasta las series Corse, Race Pro y GP20 para pilotos avanzados que buscan
+            rendimiento en circuito. La marca es conocida por su calidad de construcción y sus opciones personalizables
+            para competir.
           </p>
         </section>
 
@@ -66,47 +74,45 @@ export default function MalcorPage() {
           <div className="rounded-2xl border border-black/10 bg-white p-6">
             <h2 className="text-2xl text-black">Modelos destacados</h2>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-black/60">
-              <li>Racer R 160</li>
-              <li>Racer R 190 Special Edition (motor ZS190)</li>
-              <li>Super Racer 160</li>
-              <li>Super Racer R 190</li>
-              <li>Super Racer SMR 160 (motor Z155)</li>
-              <li>Super Racer SMR 190</li>
+              <li>Copa Alevin 90</li>
+              <li>Corse 110R, 140 RR, 155 RR y 190 RR</li>
+              <li>Race Pro 155 y 190</li>
+              <li>GP20 160, 190 y 190 Daytona</li>
+              <li>GP20 LC 300</li>
             </ul>
           </div>
           <div className="rounded-2xl border border-black/10 bg-white p-6">
             <div className="relative h-52 w-full overflow-hidden rounded-xl border border-black/10">
               <Image
-                src="/malcor-brand.jpg"
+                src="https://impormotor.com/19445-home_default/pit-bike-imr-190-modelo-race-pro.jpg"
                 fill
                 sizes="(max-width: 1024px) 100vw, 420px"
                 className="object-cover"
-                alt="Pit motard Malcor"
+                alt="Pitbike IMR Race Pro"
               />
             </div>
             <p className="mt-4 text-sm text-black/60">
-              La gama Malcor en asfalto se centra en versiones Supermotard con diferentes configuraciones de motor y
-              componentes.
+              IMR ofrece lineas para iniciacion, evolucion y competicion, con diferentes alturas y configuraciones.
             </p>
           </div>
         </section>
 
         <section className="mt-8 rounded-2xl border border-black/10 bg-white p-6">
-          <h2 className="text-2xl text-black">Que destaca en Malcor</h2>
+          <h2 className="text-2xl text-black">Que destaca en IMR</h2>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-black/60">
-            <li>Opciones en 160cc y 190cc para distintos niveles.</li>
-            <li>Versiones SMR con enfoque en asfalto.</li>
-            <li>Configuraciones con motores Z155 y ZS190 segun modelo.</li>
+            <li>Amplia variedad de cilindradas y modelos.</li>
+            <li>Series Corse y Race Pro orientadas a asfalto.</li>
+            <li>Linea GP20 con opciones de alto rendimiento.</li>
           </ul>
         </section>
 
         <section className="mt-8">
-          <h2 className="text-2xl text-black">Modelos Malcor</h2>
+          <h2 className="text-2xl text-black">Modelos IMR</h2>
           <div className="mt-4 grid gap-6 md:grid-cols-2">
-            {malcorModels.map((model) => (
+            {imrModels.map((model) => (
               <Link
                 key={model.slug}
-                href={`/motos/malcor/${model.slug}`}
+                href={routes.marcas.imr.model(model.slug).path}
                 className="rounded-2xl border border-black/10 bg-white p-6 transition hover:border-black/20"
               >
                 <div className="relative h-40 w-full overflow-hidden rounded-xl border border-black/10">

@@ -59,7 +59,7 @@ module.exports = {
   },
   transform: async (config, pagePath) => {
     const isCircuit = pagePath.startsWith("/circuitos/");
-    const isMotoModel = pagePath.startsWith("/motos/") && pagePath.split("/").length === 4;
+    const isMotoModel = pagePath.startsWith("/marcas/") && pagePath.split("/").length === 4;
     return {
       loc: pagePath,
       changefreq: isCircuit ? "daily" : "weekly",
@@ -85,9 +85,9 @@ module.exports = {
 
     const circuitRoutes = circuits.data.map((circuit) => `/circuitos/pista/${circuit.nameUrl}`);
     const motoRoutes = [
-      ...imrSlugs.map((slug) => `/motos/imr/${slug}`),
-      ...malcorSlugs.map((slug) => `/motos/malcor/${slug}`),
-      ...sharkSlugs.map((slug) => `/motos/shark/${slug}`),
+      ...imrSlugs.map((slug) => `/marcas/imr/${slug}`),
+      ...malcorSlugs.map((slug) => `/marcas/malcor/${slug}`),
+      ...sharkSlugs.map((slug) => `/marcas/shark/${slug}`),
     ];
 
     const allRoutes = Array.from(

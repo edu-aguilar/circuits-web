@@ -11,7 +11,7 @@ export const malcorModels: MotoModel[] = [
   {
     slug: "racer-r-160",
     name: "Malcor Racer R 160",
-    image: "https://www.solopitbike.es/c/105-category_default/pit-motard.jpg",
+    image: "/malcor-racer-r-160cc.jpg",
     summary: "Pit motard 160cc con chasis de acero al cromo y configuracion enfocada a asfalto.",
     audience: "Para pilotos que quieren agilidad y respuesta en tandas sin ir a 190cc.",
     specs: [
@@ -28,7 +28,7 @@ export const malcorModels: MotoModel[] = [
   {
     slug: "racer-r-190-special-edition",
     name: "Malcor Racer R 190 Special Edition",
-    image: "https://www.solopitbike.es/c/105-category_default/pit-motard.jpg",
+    image: "/malcor-racer-r-190cc-special-edition.jpg",
     summary: "Edicion especial con motor ZS190 y extras orientados a competir.",
     audience: "Para pilotos que quieren una 190cc lista para circuito con equipamiento superior.",
     specs: [
@@ -47,7 +47,7 @@ export const malcorModels: MotoModel[] = [
   {
     slug: "super-racer-160",
     name: "Malcor Super Racer 160",
-    image: "https://www.solopitbike.es/c/105-category_default/pit-motard.jpg",
+    image: "/malcor-super-racer-160cc.jpg",
     summary: "Version 160cc mejorada con radiador de gran caudal y componentes de serie avanzados.",
     audience: "Para pilotos que buscan una 160cc estable y completa para circuito.",
     specs: [
@@ -64,7 +64,7 @@ export const malcorModels: MotoModel[] = [
   {
     slug: "super-racer-r-190",
     name: "Malcor Super Racer R 190",
-    image: "https://www.solopitbike.es/c/105-category_default/pit-motard.jpg",
+    image: "/malcor-super-racer-r-190cc.jpg",
     summary: "190cc con estetica racing y equipo completo de gama alta para asfalto.",
     audience: "Para pilotos altos o avanzados que quieren un rendimiento superior en pista.",
     specs: [
@@ -81,7 +81,7 @@ export const malcorModels: MotoModel[] = [
   {
     slug: "super-racer-smr-160",
     name: "Malcor Super Racer SMR 160",
-    image: "https://www.solopitbike.es/c/105-category_default/pit-motard.jpg",
+    image: "/malcor-super-racer-smr-160cc.jpg",
     summary: "SMR 160 con chasis de aluminio reforzado y motor ZS155 ultima version.",
     audience: "Para pilotos que quieren una supermotard ligera y estable.",
     specs: [
@@ -98,7 +98,7 @@ export const malcorModels: MotoModel[] = [
   {
     slug: "super-racer-smr-190",
     name: "Malcor Super Racer SMR 190",
-    image: "https://www.solopitbike.es/c/105-category_default/pit-motard.jpg",
+    image: "/malcor-super-racer-smr-190cc.jpg",
     summary: "SMR 190 con chasis de aluminio y tijas CNC ajustables.",
     audience: "Para pilotos competitivos que buscan el maximo rendimiento en asfalto.",
     specs: [
@@ -389,7 +389,7 @@ export const sharkModels: MotoModel[] = [
   {
     slug: "mt12-190",
     name: "Shark MT12 190",
-    image: "https://sharkminigp.com/wp-content/uploads/2025/11/shark-mt12-campeona-espana-anpa-izan-marcos.jpg",
+    image: "/pitbike-motard-shark-mt12-190cc.jpg",
     summary: "Pitbike MT12 190cc con configuracion racing para asfalto.",
     audience: "Para pilotos de pitbike asfalto con enfoque racing.",
     specs: [

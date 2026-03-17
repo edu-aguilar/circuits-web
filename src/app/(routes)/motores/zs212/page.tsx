@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Metadata } from "next";
 import { AppPage } from "@/app/common/ui/components/AppPage";
+import { Breadcrumbs } from "@/app/common/ui/components/Breadcrumbs";
+import { routes } from "@/app/common/routes";
 import { motoresData } from "@/lib/motores-data";
 import Script from "next/script";
 
@@ -38,6 +40,12 @@ export default function Zs212Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
       <AppPage>
+        <Breadcrumbs
+          items={[
+            { label: "Motores", href: routes.motores.path },
+            { label: "ZS212", href: routes.motores.zs212.path },
+          ]}
+        />
         <section className="rounded-2xl border border-black/10 bg-white p-8">
           <p className="text-xs uppercase tracking-[0.25em] text-black/50">Motores</p>
           <h1 className="mt-3 text-4xl text-black">{motor.name}</h1>

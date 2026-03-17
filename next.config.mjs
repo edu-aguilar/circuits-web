@@ -12,6 +12,20 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/motos',
+        destination: '/marcas',
+        permanent: true,
+      },
+      {
+        source: '/motos/:path*',
+        destination: '/marcas/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

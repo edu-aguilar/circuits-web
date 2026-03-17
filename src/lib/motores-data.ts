@@ -9,6 +9,7 @@ export type Motor = {
     value: string;
   }[];
   advantages: string[];
+  image: string;
 };
 
 export const motoresData: Motor[] = [
@@ -38,6 +39,7 @@ export const motoresData: Motor[] = [
       "Muelles un 30% más duros para mayor fiabilidad a altas revoluciones.",
       "Amplia disponibilidad de recambios y accesorios en el mercado español.",
     ],
+    image: "/zs155.jpg",
   },
   {
     slug: "zs190",
@@ -63,6 +65,7 @@ export const motoresData: Motor[] = [
       "Diseño robusto y probado en múltiples configuraciones de pitbike.",
       "Compatible con la mayoría de chasis de pitbike de asfalto del mercado.",
     ],
+    image: "/zs190.avif",
   },
   {
     slug: "daytona-190-4v",
@@ -90,6 +93,7 @@ export const motoresData: Motor[] = [
       "Gran disponibilidad de recambios específicos Daytona.",
       "Excelente respuesta del motor a altas revoluciones.",
     ],
+    image: "/daytona1904v.webp",
   },
   {
     slug: "zs212",
@@ -119,6 +123,7 @@ export const motoresData: Motor[] = [
       "Excelente opción para montajes de alto rendimiento y competición.",
       "Compatible con la mayoría de recambios de la gama ZS190.",
     ],
+    image: "/zs212.webp",
   },
   {
     slug: "yx160",
@@ -147,5 +152,6 @@ export const motoresData: Motor[] = [
       "Encendido interior tipo Daytona para mejor rendimiento.",
       "Salida de culata CRF para amplia compatibilidad con chasis.",
     ],
+    image: "/yx160.jpg",
   },
 ];

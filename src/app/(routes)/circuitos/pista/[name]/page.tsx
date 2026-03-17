@@ -1,6 +1,7 @@
 import { findCircuit } from "@/app/circuits/ui/actions/findCircuit";
 import { CircuitGallery } from "@/app/circuits/ui/components/CircuitGallery";
 import { AppPage } from "@/app/common/ui/components/AppPage";
+import { Breadcrumbs } from "@/app/common/ui/components/Breadcrumbs";
 import { ReportComponent } from "@/app/common/ui/components/ReportComponent";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { Metadata } from "next";
@@ -74,6 +75,12 @@ export default async function CircuitPage({ params }: CircuitPageProps) {
         }}
       />
       <AppPage>
+        <Breadcrumbs
+          items={[
+            { label: "Circuitos", href: "/circuitos" },
+            { label: circuit.name, href: `/circuitos/pista/${circuit.nameUrl}` },
+          ]}
+        />
         <div className="space-y-10">
           <section className="rounded-3xl border border-black/10 bg-white p-6 md:p-10">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
