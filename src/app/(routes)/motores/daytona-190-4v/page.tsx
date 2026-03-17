@@ -58,7 +58,7 @@ export default function Daytona190Page() {
           <div className="rounded-2xl border border-black/10 bg-white p-6">
             <div className="relative h-52 w-full overflow-hidden rounded-xl border border-black/10">
               <Image
-                src="https://www.solopitbike.es/c/54-category_default/motores.jpg"
+                src="/daytona1904v.webp"
                 fill
                 sizes="(max-width: 1024px) 100vw, 420px"
                 className="object-cover"
