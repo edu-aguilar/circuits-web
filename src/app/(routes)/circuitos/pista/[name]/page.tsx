@@ -5,6 +5,7 @@ import { ReportComponent } from "@/app/common/ui/components/ReportComponent";
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 
 type CircuitPageProps = {
   params: { name: string };
@@ -35,112 +36,150 @@ export default async function CircuitPage({ params }: CircuitPageProps) {
   });
 
   return (
-    <AppPage>
-      <div className="space-y-10">
-        <section className="rounded-3xl border border-black/10 bg-white p-6 md:p-10">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-            <div className="max-w-3xl">
-              <p className="text-xs uppercase tracking-[0.25em] text-black/50">Circuito</p>
-              <h1 className="mt-4 text-4xl text-black md:text-5xl">{circuit.name}</h1>
-              <p className="mt-3 text-sm text-black/60 md:text-base">{circuit.address}</p>
+    <>
+      <Script
+        id="schema-org"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SportsActivityLocation",
+            name: circuit.name,
+            description: circuit.description || `Circuito de pitbike en ${circuit.address}`,
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: circuit.address,
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: circuit.location.lat,
+              longitude: circuit.location.lng,
+            },
+            image: circuit.images[0],
+            priceRange: circuit.price
+              ? `$${circuit.price.half || circuit.price.complete}-${circuit.price.complete || circuit.price.half} EUR`
+              : undefined,
+            openingHoursSpecification: circuit.price
+              ? [
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                    opens: "09:00",
+                    closes: "20:00",
+                  },
+                ]
+              : undefined,
+            url: `https://todopitbike.es/circuitos/pista/${circuit.nameUrl}`,
+          }),
+        }}
+      />
+      <AppPage>
+        <div className="space-y-10">
+          <section className="rounded-3xl border border-black/10 bg-white p-6 md:p-10">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+              <div className="max-w-3xl">
+                <p className="text-xs uppercase tracking-[0.25em] text-black/50">Circuito</p>
+                <h1 className="mt-4 text-4xl text-black md:text-5xl">{circuit.name}</h1>
+                <p className="mt-3 text-sm text-black/60 md:text-base">{circuit.address}</p>
 
-              {circuit.description && (
-                <div className="mt-6 rounded-2xl border border-black/10 bg-white p-4">
-                  <h2 className="text-lg text-black">Descripcion</h2>
-                  <p className="mt-2 text-sm text-black/60">{circuit.description}</p>
-                </div>
-              )}
-            </div>
-            <div className="flex flex-col gap-3">
-              <ReportComponent
-                title="Reportar datos"
-                url={`https://docs.google.com/forms/d/e/1FAIpQLSdfpI96fk2nhMaeH4hN-kGQeD6MK10AAw9NagM4-oMbyzCv_w/viewform?entry.1591967472=${circuit.nameUrl}`}
-              />
-            </div>
-          </div>
-        </section>
-
-        <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
-            <h2 className="text-2xl text-black">Ubicacion</h2>
-            <p className="mt-2 text-sm text-black/60">Vista de mapa y coordenadas precisas.</p>
-            <div className="mt-4 overflow-hidden rounded-xl border border-black/10">
-              <GoogleMapsEmbed
-                apiKey={process.env.GMAPS_API_KEY as string}
-                height={400}
-                width="100%"
-                mode="place"
-                maptype="satellite"
-                zoom="17"
-                q={`${circuit.location.lat},${circuit.location.lng}`}
-              />
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
-            <h2 className="text-2xl text-black">Detalles</h2>
-            <div className="mt-5 space-y-5 text-sm text-black/60">
-              {circuit.price && (
-                <div className="rounded-2xl border border-black/10 bg-white p-4">
-                  <h3 className="text-xs uppercase tracking-[0.2em] text-black/50">Precios</h3>
-                  <div className="mt-3 space-y-1">
-                    {circuit.price.half && <p>{circuit.price.half} EUR medio dia</p>}
-                    {circuit.price.complete && <p>{circuit.price.complete} EUR dia completo</p>}
+                {circuit.description && (
+                  <div className="mt-6 rounded-2xl border border-black/10 bg-white p-4">
+                    <h2 className="text-lg text-black">Descripcion</h2>
+                    <p className="mt-2 text-sm text-black/60">{circuit.description}</p>
                   </div>
-                </div>
-              )}
-
-              {circuit.social && (
-                <div className="rounded-2xl border border-black/10 bg-white p-4">
-                  <h3 className="text-xs uppercase tracking-[0.2em] text-black/50">Redes sociales</h3>
-                  <div className="mt-3 flex flex-col gap-2">
-                    {circuit.social.instagram && (
-                      <Link
-                        target="_blank"
-                        rel="noreferrer"
-                        href={circuit.social.instagram}
-                        className="inline-flex items-center rounded-full border border-black/10 px-4 py-2 text-xs text-black/70"
-                      >
-                        Instagram
-                      </Link>
-                    )}
-                    {circuit.social.facebook && (
-                      <Link
-                        target="_blank"
-                        rel="noreferrer"
-                        href={circuit.social.facebook}
-                        className="inline-flex items-center rounded-full border border-black/10 px-4 py-2 text-xs text-black/70"
-                      >
-                        Facebook
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {Boolean(circuit.distance || circuit.width || circuit.settings) && (
-                <div className="rounded-2xl border border-black/10 bg-white p-4">
-                  <h3 className="text-xs uppercase tracking-[0.2em] text-black/50">Tecnica</h3>
-                  <div className="mt-3 space-y-1">
-                    {circuit.distance && <p>Distancia: {circuit.distance} metros</p>}
-                    {circuit.width && <p>Anchura: {circuit.width} metros</p>}
-                    {circuit.settings && circuit.settings[160] && <p>Desarrollo 160: {circuit.settings[160]}</p>}
-                    {circuit.settings && circuit.settings[190] && <p>Desarrollo 190: {circuit.settings[190]}</p>}
-                  </div>
-                </div>
-              )}
+                )}
+              </div>
+              <div className="flex flex-col gap-3">
+                <ReportComponent
+                  title="Reportar datos"
+                  url={`https://docs.google.com/forms/d/e/1FAIpQLSdfpI96fk2nhMaeH4hN-kGQeD6MK10AAw9NagM4-oMbyzCv_w/viewform?entry.1591967472=${circuit.nameUrl}`}
+                />
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
-          <h2 className="text-2xl text-black">Imagenes</h2>
-          <p className="mt-2 text-sm text-black/60">Galeria del circuito y zonas clave.</p>
-          <div className="mt-4">
-            <CircuitGallery images={circuit.images} />
-          </div>
-        </section>
-      </div>
-    </AppPage>
+          <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
+              <h2 className="text-2xl text-black">Ubicacion</h2>
+              <p className="mt-2 text-sm text-black/60">Vista de mapa y coordenadas precisas.</p>
+              <div className="mt-4 overflow-hidden rounded-xl border border-black/10">
+                <GoogleMapsEmbed
+                  apiKey={process.env.GMAPS_API_KEY as string}
+                  height={400}
+                  width="100%"
+                  mode="place"
+                  maptype="satellite"
+                  zoom="17"
+                  q={`${circuit.location.lat},${circuit.location.lng}`}
+                />
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
+              <h2 className="text-2xl text-black">Detalles</h2>
+              <div className="mt-5 space-y-5 text-sm text-black/60">
+                {circuit.price && (
+                  <div className="rounded-2xl border border-black/10 bg-white p-4">
+                    <h3 className="text-xs uppercase tracking-[0.2em] text-black/50">Precios</h3>
+                    <div className="mt-3 space-y-1">
+                      {circuit.price.half && <p>{circuit.price.half} EUR medio dia</p>}
+                      {circuit.price.complete && <p>{circuit.price.complete} EUR dia completo</p>}
+                    </div>
+                  </div>
+                )}
+
+                {circuit.social && (
+                  <div className="rounded-2xl border border-black/10 bg-white p-4">
+                    <h3 className="text-xs uppercase tracking-[0.2em] text-black/50">Redes sociales</h3>
+                    <div className="mt-3 flex flex-col gap-2">
+                      {circuit.social.instagram && (
+                        <Link
+                          target="_blank"
+                          rel="noreferrer"
+                          href={circuit.social.instagram}
+                          className="inline-flex items-center rounded-full border border-black/10 px-4 py-2 text-xs text-black/70"
+                        >
+                          Instagram
+                        </Link>
+                      )}
+                      {circuit.social.facebook && (
+                        <Link
+                          target="_blank"
+                          rel="noreferrer"
+                          href={circuit.social.facebook}
+                          className="inline-flex items-center rounded-full border border-black/10 px-4 py-2 text-xs text-black/70"
+                        >
+                          Facebook
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {Boolean(circuit.distance || circuit.width || circuit.settings) && (
+                  <div className="rounded-2xl border border-black/10 bg-white p-4">
+                    <h3 className="text-xs uppercase tracking-[0.2em] text-black/50">Tecnica</h3>
+                    <div className="mt-3 space-y-1">
+                      {circuit.distance && <p>Distancia: {circuit.distance} metros</p>}
+                      {circuit.width && <p>Anchura: {circuit.width} metros</p>}
+                      {circuit.settings && circuit.settings[160] && <p>Desarrollo 160: {circuit.settings[160]}</p>}
+                      {circuit.settings && circuit.settings[190] && <p>Desarrollo 190: {circuit.settings[190]}</p>}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+
+          <section className="rounded-2xl border border-black/10 bg-white p-6 md:p-8">
+            <h2 className="text-2xl text-black">Imagenes</h2>
+            <p className="mt-2 text-sm text-black/60">Galeria del circuito y zonas clave.</p>
+            <div className="mt-4">
+              <CircuitGallery images={circuit.images} />
+            </div>
+          </section>
+        </div>
+      </AppPage>
+    </>
   );
 }

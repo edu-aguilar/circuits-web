@@ -116,7 +116,7 @@ export default function Home() {
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
               <Image
-                src="https://www.solopitbike.es/c/105-category_default/pit-motard.jpg"
+                src="/malcor-brand.jpg"
                 fill
                 sizes="(max-width: 1024px) 100vw, 300px"
                 className="object-cover"
@@ -185,7 +185,7 @@ export default function Home() {
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
               <Image
-                src="https://www.solopitbike.es/c/54-category_default/motores.jpg"
+                src="/zs155.jpg"
                 fill
                 sizes="(max-width: 1024px) 100vw, 300px"
                 className="object-cover"
@@ -202,7 +202,7 @@ export default function Home() {
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
               <Image
-                src="https://www.solopitbike.es/c/54-category_default/motores.jpg"
+                src="/zs190.avif"
                 fill
                 sizes="(max-width: 1024px) 100vw, 300px"
                 className="object-cover"
@@ -219,7 +219,7 @@ export default function Home() {
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
               <Image
-                src="https://www.solopitbike.es/c/54-category_default/motores.jpg"
+                src="/yx160.jpg"
                 fill
                 sizes="(max-width: 1024px) 100vw, 300px"
                 className="object-cover"
@@ -236,7 +236,7 @@ export default function Home() {
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
               <Image
-                src="https://www.solopitbike.es/c/54-category_default/motores.jpg"
+                src="/daytona1904v.webp"
                 fill
                 sizes="(max-width: 1024px) 100vw, 300px"
                 className="object-cover"
@@ -253,7 +253,7 @@ export default function Home() {
           >
             <div className="relative h-36 w-full overflow-hidden rounded-xl border border-black/10">
               <Image
-                src="https://www.solopitbike.es/c/54-category_default/motores.jpg"
+                src="/zs212.webp"
                 fill
                 sizes="(max-width: 1024px) 100vw, 300px"
                 className="object-cover"
