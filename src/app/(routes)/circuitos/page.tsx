@@ -72,7 +72,8 @@ export default async function CircuitsPage({ searchParams }: CircuitsPageProps) 
             <h1 className="mt-4 text-4xl text-black md:text-5xl">Circuitos de pitbike en Espana</h1>
             <p className="mt-3 max-w-2xl text-sm text-black/60 md:text-base">
               Descubre pistas de pitbike de asfalto por region, provincia o nombre. Cada ficha incluye ubicacion,
-              tarifas y detalles tecnicos.
+              tarifas, precios de entrada, opciones de alquiler de moto y servicios disponibles. Planea tu proxima tanda
+              o apuntate a eventos y jornadas de rodadas.
             </p>
           </div>
           <ReportComponent title="Falta un circuito" url="https://forms.gle/6KwW4BNpQ1DnZ6AM6" />
